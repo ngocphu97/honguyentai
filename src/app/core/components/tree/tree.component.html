@@ -1,0 +1,32 @@
+<div class="head">
+  <h2>Gia phả Chi {{treeId}}</h2>
+
+  <button type="button" mdbBtn color="indigo" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
+    Thêm thành viên
+  </button>
+</div>
+
+<div class="loading-session" *ngIf="loading === true">
+  <img style="width: 90px;" src="https://loading.io/spinners/comets/lg.comet-spinner.gif" alt="">
+</div>
+
+<div class="treant-class">
+  <div class="chart" id="treant-id"></div>
+</div>
+
+<div mdbModal #basicModal="mdbModal" [config]='{backdrop: false, ignoreBackdropClick: true}' class="modal fade right"
+  tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-side modal-bottom-right" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Thêm thành viên mới</h4>
+      </div>
+      <div class="modal-body">
+        <app-tree-form [treeName]="treeName"></app-tree-form>
+      </div>
+    </div>
+  </div>
+</div>

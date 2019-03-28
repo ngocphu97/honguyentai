@@ -1,0 +1,11 @@
+<div class="left-side-nav">
+  <ul>
+    <li class="text-center text-uppercase title">
+      Danh mục
+    </li>
+    <li *ngFor="let i of categories" class="text-center">
+        <a routerLink="{{i.link}}">{{i.name}}</a>
+    </li>
+  </ul>
+
+</div>

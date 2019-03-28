@@ -1,0 +1,46 @@
+.thumnail-custom {
+  height: 250px;
+  width: 250px !important;
+}
+
+.list-group-item-custom-head {
+  background: rgba(252, 152, 35, 1) !important;
+  border: none;
+}
+
+.news-list {
+  margin: 10px 0;
+}
+
+.news-thumnail {
+  width: 150px;
+}
+
+#carouselExampleIndicators {
+  border: 1px solid red;
+  padding: 15px;
+  border-radius: 5px;
+
+  .carousel-indicators {
+    justify-content: flex-end;
+
+    li {
+      background-color: #963821 !important;
+    }
+
+    li.active {
+      background-color: #589495 !important;
+    }
+  }
+
+  .carousel-item {
+    .carousel-caption {
+      right: 40px;
+      top: 0;
+      text-align: right;
+      padding-top: 0;
+      padding-bottom: 0;
+      color: black;
+    }
+  }
+}

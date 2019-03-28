@@ -1,0 +1,37 @@
+<h5 class="list-group-item-custom-head" style="color: #fff">Thư viện ảnh</h5>
+
+<div class="img-form">
+  <div class="md-form md-form-custom">
+    <input #src placeholder="Đường dẫn (link) hình ảnh" type="text" name="imgUrl" class="form-control">
+    <button class="btn btn-sm btn-primary indigo" (click)="uploadImg(src.value)">Upload</button>
+  </div>
+</div>
+
+<div class="row popup">
+  <div class="col-md-4" *ngFor="let img of images | paginate: { itemsPerPage: 3, currentPage: p }" style="margin-bottom: 15px;">
+
+    <mdb-card>
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <mdb-card-img (click)="onSelectImg(img.src, img.id)" class="lib-item-image" src="{{img.src}}" alt="Card image cap"></mdb-card-img>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+      <button class="btn btn-sm btn-primary indigo" (click)="onSelectImg(img.src, img.id)">
+        <i class="fas fa-expand-arrows-alt"></i> Phóng to
+      </button>
+    </mdb-card>
+  </div>
+
+
+  <div class="pagination">
+    <pagination-controls (pageChange)="p = $event" previousLabel="Trang trước" nextLabel="Trang sau"></pagination-controls>
+  </div>
+
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>

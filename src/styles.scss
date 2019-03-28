@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #963821;
+}
+
+.indigo {
+  background-color: #DF3409 !important;
+}
+
+.btn-indigo {
+  background-color: #fc9823 !important;
+}
+
+* {
+  color: #CF1515;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

@@ -1,0 +1,37 @@
+.left-side-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  ul {
+    background-image: url("https://ngotoc.vn/themes/ngotoc/images/partern-danhmuc.jpg");
+    padding: 10px;
+    margin: 0;
+
+    li {
+      list-style: none;
+      margin-bottom: 5px;
+
+      a {
+        color: #910000;
+        box-shadow: 0 8px 8px -8px #910000;
+      }
+    }
+  }
+}
+
+.left-side-nav::before,
+.left-side-nav::after {
+  content: "";
+  background: url("https://ngotoc.vn/themes/ngotoc/images/top-danh-ba.jpg") no-repeat center;
+  height: 27px;
+  width: 100%;
+  display: block;
+}
+
+.title {
+  color: #910000;
+  font-weight: bolder;
+  font-size: large;
+}

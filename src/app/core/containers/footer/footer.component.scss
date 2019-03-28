@@ -1,0 +1,27 @@
+footer {
+  height: 100%;
+  padding: 15px;
+
+  .footer-sologan {
+    margin: 0;
+
+    p {
+      font-size: x-large;
+    }
+
+    hr {
+      width: 100%;
+      background: #343a40
+    }
+  }
+
+  .contact-infomation {
+    margin-bottom: 15px;
+    padding: 10px;
+
+    ul li {
+      list-style: none;
+      margin-bottom: 5px;
+    }
+  }
+}

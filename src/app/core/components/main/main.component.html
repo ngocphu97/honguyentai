@@ -1,0 +1,36 @@
+<div class="loading" *ngIf="loading === true">
+  <img src="https://loading.io/spinners/harmony/lg.harmony-taiji-spinner.gif" alt="">
+</div>
+
+<div *ngIf="loading === false">
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+
+      <ng-container *ngFor="let n of news; let i = index">
+        <div [ngClass]="{active: i === 0}" class="carousel-item">
+          <img class="d-block thumnail-custom" src="{{n.image}}" alt="First slide">
+          <div class="carousel-caption">
+            <h3>{{n.title}}</h3>
+            <a routerLink="/chinguyentai/tin-tuc/{{n.id}}" class="float-right">Xem thêm</a>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>

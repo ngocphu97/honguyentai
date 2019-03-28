@@ -1,0 +1,47 @@
+<div class="list-group">
+  <a class="list-group-item list-group-item-action active list-group-item-custom-head text-center">
+    Bài đăng gần đây
+  </a>
+  <div class="list-group-item list-group-item-action list-group-item-action-custom">
+    <p *ngIf="news.length === 0" style="text-align: center">
+      <span>Chưa có gì cả</span>
+      <img src="https://assets.materialup.com/uploads/77a5d214-0a8a-4444-a523-db0c4e97b9c0/preview.jpg"
+        class="img-fluid" alt="">
+    </p>
+    <ul class="list-unstyled">
+      <li class="media" *ngFor="let n of news">
+        <img class="mr-3 thumnail-custom" src="assets/news/1.jpeg">
+        <div class="media-body">
+          <span class="mt-0 mb-1">{{(n.title.length > 20) ? (n.title |  slice:0:15) + '...' : n.title}}</span>
+          {{n.date}}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="list-group">
+  <a class="list-group-item list-group-item-action active list-group-item-custom-head text-center">
+    Thư viện ảnh
+  </a>
+  <mdb-carousel [animation]="'slide'">
+    <ng-container *ngFor="let img of slideImages">
+      <mdb-carousel-item>
+        <img class="d-block w-100" src="{{img.src}}" alt="First slide">
+      </mdb-carousel-item>
+    </ng-container>
+  </mdb-carousel>
+</div>
+
+<div class="list-group">
+  <a class="list-group-item list-group-item-action active list-group-item-custom-head text-center">
+    Thư viện video
+  </a>
+  <mdb-carousel [animation]="'slide'">
+    <ng-container *ngFor="let img of slideImages">
+      <mdb-carousel-item>
+        <img class="d-block w-100" src="{{img.src}}" alt="First slide">
+      </mdb-carousel-item>
+    </ng-container>
+  </mdb-carousel>
+</div>

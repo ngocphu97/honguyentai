@@ -1,0 +1,33 @@
+<div class="border-top" style="background: #fff">
+  <div class="row">
+    <div class="col-12 col-md">
+      <h5 class="list-group-item-custom-head" style="color: #fff">Liên lạc</h5>
+    </div>
+  </div>
+
+  <div *ngFor="let f of familyContact" class="row">
+    <div class="col-md-12">
+      <mdb-card>
+
+
+        <!-- <iframe [src]="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15677.922604148289!2d106.66164161977538!3d10.774451099999993!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1547272579755"
+          width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+        Hình map
+        <mdb-card-body>
+          <mdb-card-title>
+            <h4>{{f.contactName}}</h4>
+          </mdb-card-title>
+
+          <mdb-card-text>
+            Địa chỉ: {{f.address}}
+            Số điện thoại: {{f.phoneNumber}}
+            Email: {{f.email}}
+          </mdb-card-text>
+
+        </mdb-card-body>
+      </mdb-card>
+    </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,27 @@
+<div class="container banner">
+  <app-banner></app-banner>
+</div>
+
+<div class="container header">
+  <app-header></app-header>
+</div>
+
+<div class="container main">
+  <div class="row">
+    <div class="col-md-3">
+      <app-left-side></app-left-side>
+    </div>
+
+    <div class="col-md-6">
+      <router-outlet></router-outlet>
+    </div>
+
+    <div class="col-md-3">
+      <app-right-side></app-right-side>
+    </div>
+  </div>
+</div>
+
+<div class="container footer">
+  <app-footer></app-footer>
+</div>

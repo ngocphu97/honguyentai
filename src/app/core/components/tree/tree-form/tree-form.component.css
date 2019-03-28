@@ -1,0 +1,11 @@
+.tree-class {
+    overflow-x: auto;
+}
+
+.form {
+    height: 450px;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 10px;
+}

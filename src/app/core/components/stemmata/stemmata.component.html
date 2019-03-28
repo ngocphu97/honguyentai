@@ -1,0 +1,17 @@
+<div class="container m-t-md">
+
+  <div class="row annal-list" *ngFor="let row of treesDisplay">
+    <ng-container *ngFor="let item of row?.items">
+
+      <div class="annal-card">
+        <h5>{{item.name}}</h5>
+        <p>{{item.basicInfo}}</p>
+        <a class="btn btn-sm btn-indigo float-right" href="/chinguyentai/chi-tiet/{{item.value}}">
+          Chi tiết <i class="fas fa-angle-right"></i>
+        </a>
+      </div>
+
+    </ng-container>
+  </div>
+
+</div>

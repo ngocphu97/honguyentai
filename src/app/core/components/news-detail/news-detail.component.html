@@ -1,0 +1,51 @@
+<div class="loading" *ngIf="loading === true">
+  <img src="https://loading.io/spinners/harmony/lg.harmony-taiji-spinner.gif" alt="">
+</div>
+
+<div *ngIf="loading === false">
+  <h2>
+    {{newsTitle}}
+  </h2>
+
+  <div id="newsImage">
+    <img src="{{newsImage}}" class="img-fluid" alt="">
+  </div>
+
+  <p id="newsText">
+
+  </p>
+
+  <button class="btn btn-primary btn-sm indigo" (click)="toogleEditMode()">
+    Chỉnh sửa
+  </button>
+
+  <div *ngIf="readMode === false">
+    <form #newsForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Tiêu đề</label>
+        <input type="text" class="form-control" id="title" value="Tiêu đề 1" placeholder="Tiêu đề tin tức ..."
+          [(ngModel)]="newsTitle" name="newsTitle" required>
+      </div>
+
+      <div>
+        <label for="">Upload Hình ảnh</label>
+        <input type="file" (change)="onFileSelected($event)">
+        <br>
+        <img class="img-fluid" src="{{imagePreview}}" alt="">
+        <br>
+      </div>
+
+      <div [hidden]="newsTitle.valid || newsTitle.pristine" class="alert alert-danger">
+        Hãy nhập thêm tiêu đề
+      </div>
+
+      <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" language="en" [fullPage]="true"
+        [config]="editorConfig" [readonly]="readonly">
+      </ck-editor>
+
+      <button class="btn btn-primary" type="submit">Lưu</button>
+
+    </form>
+  </div>
+
+</div>
