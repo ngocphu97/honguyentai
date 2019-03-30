@@ -15,6 +15,7 @@ import { CKEditorModule } from 'ngx-ckeditor';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { containers } from './containers';
 import { components } from './components';
+
 @NgModule({
   imports: [
     CommonModule,

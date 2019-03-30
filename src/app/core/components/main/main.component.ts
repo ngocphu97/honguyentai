@@ -25,12 +25,10 @@ export class MainComponent implements OnInit {
       map((data) => {
         const obj = Object.values(data);
         newsArray = Object.values(obj[0]);
-        console.log(newsArray);
         return newsArray;
       })
     ).subscribe(val => {
       val.forEach(element => {
-        console.log(element);
 
         const cleanText = element.content.replace(/<\/?[^>]+(>|$)/g, '');
 

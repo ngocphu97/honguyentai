@@ -16,7 +16,9 @@
           <img class="d-block thumnail-custom" src="{{n.image}}" alt="First slide">
           <div class="carousel-caption">
             <h3>{{n.title}}</h3>
-            <a routerLink="/chinguyentai/tin-tuc/{{n.id}}" class="float-right">Xem thêm</a>
+            <a routerLink="/chinguyentai/tin-tuc/{{n.id}}" class="float-right">
+              <i class="fas fa-sign-out-alt"></i> Xem thêm ...
+            </a>
           </div>
         </div>
       </ng-container>
@@ -33,4 +35,17 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+</div>
+
+
+<div>
+  <app-announcement></app-announcement>
+  <app-introduce></app-introduce>
+  <app-history></app-history>
+  <app-famous-people></app-famous-people>
+  <app-activities></app-activities>
+  <app-culture-life></app-culture-life>
+  <app-books></app-books>
+  <app-worshiping-merit></app-worshiping-merit>
+  <app-connect-people></app-connect-people>
 </div>

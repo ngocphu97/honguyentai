@@ -1,3 +1,13 @@
 .navbar-custom {
   font-size: 14px !important;
 }
+
+:host::ng-deep.nav-link.waves-light.item.active {
+  color: yellow;
+  font-weight: bolder;
+}
+
+:host::ng-deep.navbar-custom nav {
+  margin-left: -15px;
+  margin-right: -15px;
+}

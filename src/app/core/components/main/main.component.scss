@@ -35,12 +35,22 @@
 
   .carousel-item {
     .carousel-caption {
-      right: 40px;
+      position: absolute;
+      right: 0%;
       top: 0;
-      text-align: right;
+      bottom: 33%;
+      left: 51%;
+      z-index: 30;
       padding-top: 0;
       padding-bottom: 0;
+      text-align: right;
       color: black;
+    }
+
+    a {
+      font-size: small;
+      font-weight: bold;
+      color: #CF1515;
     }
   }
 }

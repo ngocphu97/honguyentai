@@ -6,7 +6,6 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 
 import { routes } from './app.routing';
-import { ActionsDirective } from './actions.directive';
 
 @NgModule({
   imports: [
@@ -15,8 +14,7 @@ import { ActionsDirective } from './actions.directive';
     RouterModule.forRoot(routes)
   ],
   declarations: [
-    AppComponent,
-    ActionsDirective
+    AppComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,7 +3,6 @@ import { TreeNode } from '../models/TreeNode';
 import { TreeService } from '../tree.service';
 import * as $ from 'jquery';
 import { ActivatedRoute } from '@angular/router';
-import { ActionsDirective } from 'src/app/actions.directive';
 import { map, timeout } from 'rxjs/operators';
 
 declare var Treant: any;
@@ -16,7 +15,6 @@ declare var Treant: any;
 })
 export class TreeComponent implements OnInit {
 
-  @ViewChild(ActionsDirective) appActions: ActionsDirective;
   interval: any;
 
   treeName = '';

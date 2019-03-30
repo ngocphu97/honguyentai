@@ -1,0 +1,9 @@
+.media-body {
+  display: flex;
+  flex-direction: row;
+
+  h6,
+  div {
+    width: 100%;
+  }
+}
