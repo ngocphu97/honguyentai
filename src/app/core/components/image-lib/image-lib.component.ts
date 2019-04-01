@@ -9,10 +9,8 @@ import { map } from 'rxjs/operators';
 })
 export class ImageLibComponent implements OnInit {
 
-  p: any;
-
-  images = [
-  ];
+  page: any;
+  images = [];
 
   constructor(private service: TreeService) { }
 
@@ -31,6 +29,9 @@ export class ImageLibComponent implements OnInit {
       })
     ).subscribe(val => {
       val.forEach(element => {
+        if (!element.src) {
+          element.src = 'https://www.wingstosoaronline.com/wp-content/themes/wingstosoar/images/default_post.jpg';
+        }
         const n = {
           id: element.id,
           src: element.src,
@@ -42,8 +43,8 @@ export class ImageLibComponent implements OnInit {
   }
 
   onSelectImg(src, id) {
-    const modal = document.getElementById('myModal');
-    const modalImg = document.getElementById('img01') as HTMLElement;
+    const modal = document.getElementById('imagePreviewModal');
+    const modalImg = document.getElementById('imagePreview') as HTMLElement;
 
     modal.style.display = 'block';
     modalImg.setAttribute('src', src);

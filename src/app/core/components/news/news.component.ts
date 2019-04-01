@@ -29,10 +29,14 @@ export class NewsComponent implements OnInit {
       })
     ).subscribe(val => {
       val.forEach(element => {
+        if (!element.image) {
+          element.image = 'https://www.wingstosoaronline.com/wp-content/themes/wingstosoar/images/default_post.jpg';
+        }
         const n = {
           id: element.id,
           title: element.title,
           content: element.content,
+          date: element.date,
           image: element.image
         };
         this.news.push(n);

@@ -1,23 +1,26 @@
-<div class="loading" *ngIf="loading === true">
+<div class="loading" *ngIf="loading">
   <img src="https://loading.io/spinners/harmony/lg.harmony-taiji-spinner.gif" alt="">
 </div>
 
-<div *ngIf="loading === false">
-  <h2>
+<div>
+
+  <h2 class="text-center">
     {{newsTitle}}
   </h2>
+
+  <div class="news-infomation">
+    <small>{{newsDate | date:"short"}}</small>
+    <button class="btn btn-primary btn-sm indigo" mdbTooltip="Chỉnh sửa" placement="bottom" (click)="toogleEditMode()">
+      <i class="fa fa-pencil"></i>
+    </button>
+  </div>
 
   <div id="newsImage">
     <img src="{{newsImage}}" class="img-fluid" alt="">
   </div>
 
   <p id="newsText">
-
   </p>
-
-  <button class="btn btn-primary btn-sm indigo" (click)="toogleEditMode()">
-    Chỉnh sửa
-  </button>
 
   <div *ngIf="readMode === false">
     <form #newsForm="ngForm" (ngSubmit)="onSubmit()">
@@ -33,10 +36,6 @@
         <br>
         <img class="img-fluid" src="{{imagePreview}}" alt="">
         <br>
-      </div>
-
-      <div [hidden]="newsTitle.valid || newsTitle.pristine" class="alert alert-danger">
-        Hãy nhập thêm tiêu đề
       </div>
 
       <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" language="en" [fullPage]="true"

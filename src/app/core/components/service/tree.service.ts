@@ -29,33 +29,52 @@ export class TreeService {
       id: id,
       title: title,
       content: content,
-      image: image
+      image: image,
+      date: new Date()
     };
     return this.http.post(this.url + '/news/' + id, object);
   }
 
-  deleteNews() {
-    console.log('deleteNews');
+  postDocument(id, title, content): any {
+    const object = {
+      id: id,
+      title: title,
+      content: content,
+      date: new Date()
+    };
+    return this.http.post(this.url + '/history-documents/' + id, object);
   }
 
-  updateNews(title, content, id, image) {
+  getDocuments(): Observable<any> {
+    return this.http.get(this.url + 'history-documents');
+  }
+
+  deleteNews(id) {
+    const url = this.url + '/news/' + id;
+    return this.http.put(url, id);
+  }
+
+  updateNews(title, content, id, image): Observable<any> {
     const object = {
       content: content,
       id: id,
       image: image,
       title: title,
+      date: new Date()
     };
     const url = this.url + '/news/' + id;
-    console.log(url);
-    this.http.put(url, object, id)
-      .subscribe(
-        data => {
-          console.log('UPDATE is successful ', data);
-        },
-        error => {
-          console.log('Error', error);
-        }
-      );
+    return this.http.put(url, object, id);
+  }
+
+  updateDocument(title, content, id): Observable<any> {
+    const object = {
+      content: content,
+      id: id,
+      title: title,
+      update: new Date()
+    };
+    const url = this.url + '/history-documents/' + id;
+    return this.http.put(url, object, id);
   }
 
   getImage(): any {

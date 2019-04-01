@@ -14,9 +14,10 @@ export class NewsDetailComponent implements OnInit {
 
   id: string;
   editorValue = '';
-  newsText = ``;
+  newsText = '';
   newsTitle = '';
   newsImage = '';
+  newsDate = '';
   readonly = false;
   readMode = true;
 
@@ -39,6 +40,7 @@ export class NewsDetailComponent implements OnInit {
 
   selectedFile = null;
   imagePreview: any;
+  uploadStatus = false;
 
   constructor(private service: TreeService, private location: Location,
     private route: ActivatedRoute, private router: Router) { }
@@ -48,14 +50,16 @@ export class NewsDetailComponent implements OnInit {
   }
 
   getNewsById() {
-    this.id = this.route.snapshot.paramMap.get('id');
     this.loading = true;
+    this.id = this.route.snapshot.paramMap.get('id');
     this.service.getNewsById(this.id).subscribe(data => {
+      console.log(data);
+      this.loading = false;
       this.newsTitle = data.result.title;
       this.newsText = data.result.content;
       this.newsImage = data.result.image;
-      this.createHTMLDOM();
-      this.loading = false;
+      this.newsDate = data.result.date;
+      document.getElementById('newsText').innerHTML = data.result.content;
     });
   }
 
@@ -89,7 +93,13 @@ export class NewsDetailComponent implements OnInit {
     document.getElementById('newsText').innerHTML = this.newsText;
     document.getElementById('newsText').style.display = 'block';
     this.readMode = true;
-    this.service.updateNews(this.newsTitle, this.editorValue, this.id, this.imagePreview);
-    this.router.navigate(['/tin-tuc']);
+    this.service.updateNews(this.newsTitle, this.editorValue, this.id, this.imagePreview)
+      .subscribe(
+        () => {
+          alert('Đã thay đổi thành công');
+          this.router.navigate(['/chinguyentai/tin-tuc']);
+        }
+      );
+
   }
 }

@@ -16,18 +16,18 @@ export class StemmataComponent implements OnInit {
   id = 'Chi1';
 
   trees = [
-    { name: 'Chi 1', value: 1, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 2', value: 2, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 3', value: 3, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 4', value: 4, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 5', value: 5, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 6', value: 6, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 7', value: 7, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 8', value: 8, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 9', value: 9, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 10', value: 10, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 11', value: 11, basicInfo: 'Thông tin cơ bản ...' },
-    { name: 'Chi 12', value: 12, basicInfo: 'Thông tin cơ bản ...' },
+    { name: 'Chi 1', value: 1 },
+    { name: 'Chi 2', value: 2 },
+    { name: 'Chi 3', value: 3 },
+    { name: 'Chi 4', value: 4 },
+    { name: 'Chi 5', value: 5 },
+    { name: 'Chi 6', value: 6 },
+    { name: 'Chi 7', value: 7 },
+    { name: 'Chi 8', value: 8 },
+    { name: 'Chi 9', value: 9 },
+    { name: 'Chi 10', value: 10 },
+    { name: 'Chi 11', value: 11 },
+    { name: 'Chi 12', value: 12 }
   ];
 
   treesDisplay = [];

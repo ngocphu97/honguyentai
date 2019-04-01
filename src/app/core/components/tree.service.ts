@@ -34,11 +34,8 @@ export class TreeService {
     return this.http.get<any>(url);
   }
 
-  getData1(treeName) {
-    console.log(treeName);
+  getData1(treeName): Observable<any> {
     const url = this.urlTest + '/profile' + treeName;
-    // const url = this.url + 'Chi1';
-    console.log(url);
     return this.http.get<any>(url);
   }
 

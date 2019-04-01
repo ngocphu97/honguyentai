@@ -1,25 +1,14 @@
-.thumnail-custom {
-  height: 250px;
-  width: 730px !important;
+.title {
+  display: flex;
+  justify-content: space-between;
+
+  a i {
+    color: #ffffff;
+  }
 }
 
-.list-group-item-custom-head {
-  background: rgba(252, 152, 35, 1) !important;
-  border: none;
-}
-
-.news-list {
-  margin: 10px 0;
-}
-
-.news-thumnail {
-  width: 150px;
-}
-
-.add-news {
-  margin: 15px 0;
-}
-
-.add-news a {
-  margin: 0;
+.media {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  border-top: 1px solid red;
 }

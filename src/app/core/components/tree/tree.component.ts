@@ -38,16 +38,10 @@ export class TreeComponent implements OnInit {
         'stroke-width': 2,
         'stroke': 'grey'
       }
-    },
-    animation: {
-      nodeSpeed: 100,
     }
   };
 
-  configModal =
-    {
-      position: 'bottom'
-    };
+  configModal = { position: 'bottom' };
 
   rootNodeArray: Array<any> = [];
 
@@ -136,7 +130,6 @@ export class TreeComponent implements OnInit {
     this.addRootNode();
     this.treeId = +this.route.snapshot.paramMap.get('id');
     this.treeName = 'Chi' + this.treeId;
-
     let treeNode = this.rootNode;
     this.rootNodeArray.forEach(r => {
       if (r.id === this.treeId) {
@@ -144,7 +137,9 @@ export class TreeComponent implements OnInit {
       }
     });
 
-    this.getData(this.treeName, treeNode);
+    setTimeout(() => {
+      this.getData(this.treeName, treeNode);
+    }, 2000);
   }
 
   addRootNode() {
@@ -162,7 +157,7 @@ export class TreeComponent implements OnInit {
         HTMLid: 'tree-root',
         id: r.id,
         gender: 'male',
-        image: 'https://img.icons8.com/color/1600/matrix-architect.png'
+        image: 'https://img.icons8.com/color/1600/matrix-architect.png',
       };
       this.rootNodeArray.push(rootNode);
     });
@@ -170,26 +165,21 @@ export class TreeComponent implements OnInit {
 
   getData(treeName, treeRoot) {
     this.loading = true;
-
-    // pipe data.result to array
     let treeArray = [];
-
-    setTimeout(() => {
-      const rootNode = treeRoot;
-      this.treant = new Treant([this.options, rootNode], Function.prototype, $);
-      this.service.addNode(rootNode);
-      this.service.getData1(treeName).pipe(
-        map((data) => {
-          treeArray = Object.values(data.result);
-          return treeArray;
-        })
-      ).subscribe(val => {
-        console.log(val);
-        val.forEach(d => {
-          this.service.addNode(d);
+    const rootNode = treeRoot;
+    this.treant = new Treant([this.options, rootNode], Function.prototype, $);
+    this.service.addNode(rootNode);
+    this.service.getData1(treeName)
+      .pipe(map((data) => {
+        treeArray = Object.values(data.result);
+        console.log(treeArray);
+        return treeArray;
+      }))
+      .subscribe(tree => {
+        tree.forEach(node => {
+          this.service.addNode(node);
         });
         this.loading = false;
-      }), console.error();
-    }, 5000);
+      });
   }
 }

@@ -1,30 +1,38 @@
-<p *ngIf="postStatus === true">
-  Thành công
-</p>
+<div *ngIf="postStatus" class="alert alert-success" role="alert">
+  Đã thêm thành công.
+</div>
 
-<!-- <angular-file-uploader
-      [config]="afuConfig">
-</angular-file-uploader> -->
+<h2>Thêm tin tức</h2>
 
 <form #newsForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
-    <label for="title">Tiêu đề</label>
-    <input type="text" class="form-control" id="title" value="Tiêu đề 1" placeholder="Tiêu đề tin tức ..." [(ngModel)]="newsTitle"
-      name="newsTitle" required>
+    <input type="text" class="form-control" id="title" value="Tiêu đề 1" placeholder="Tiêu đề tin tức ..."
+      [(ngModel)]="newsTitle" name="newsTitle" required>
   </div>
 
-  <div>
-    <label for="">Upload Hình ảnh</label>
-    <input type="file" (change)="onFileSelected($event)">
+  <div class="upload-image">
+    <label for="documentImage" mdbTooltip="Chọn hình" placement="bottom"
+      class="btn btn-sm btn-primary indigo float-right">
+      <i class="fa fa-upload"></i>
+    </label>
+    <input id="documentImage" type="file" (change)="onFileSelected($event)">
+
     <br>
     <img class="img-fluid" src="{{imagePreview}}" alt="">
     <br>
   </div>
 
-  <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" language="en" [fullPage]="true" [config]="editorConfig"
-    [readonly]="readonly">
+  <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" language="en" [fullPage]="true"
+    [config]="editorConfig" [readonly]="readonly">
   </ck-editor>
 
-  <button class="btn btn-primary indigo" type="submit">Lưu</button>
+  <div class="actions float-right">
+    <button class="btn btn-sm btn-primary indigo" type="submit">
+      Đăng tin mới <i class="far fa-newspaper"></i>
+    </button>
+    <button class="btn btn-sm btn-info" (click)="postDocument()">
+      Đăng tài liệu chung <i class="fas fa-book-open"></i>
+    </button>
+  </div>
 
 </form>

@@ -1,11 +1,22 @@
 .ng-valid[required],
 .ng-valid.required {
   border-left: 5px solid #42A948;
-  /* green */
 }
 
 .ng-invalid:not(form) {
   border-left: 5px solid #a94442;
-  /* red */
 }
 
+.news-infomation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  button {
+    max-height: 35px;
+
+    i {
+      color: #ffffff;
+    }
+  }
+}

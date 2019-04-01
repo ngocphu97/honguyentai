@@ -24,6 +24,9 @@
   <a class="list-group-item list-group-item-action active list-group-item-custom-head text-center">
     Thư viện ảnh
   </a>
+  <div *ngIf="slideImages.length === 0">
+    <img src="https://loading.io/spinners/harmony/lg.harmony-taiji-spinner.gif" alt="">
+  </div>
   <mdb-carousel [animation]="'slide'">
     <ng-container *ngFor="let img of slideImages">
       <mdb-carousel-item>
@@ -37,11 +40,7 @@
   <a class="list-group-item list-group-item-action active list-group-item-custom-head text-center">
     Thư viện video
   </a>
-  <mdb-carousel [animation]="'slide'">
-    <ng-container *ngFor="let img of slideImages">
-      <mdb-carousel-item>
-        <img class="d-block w-100" src="{{img.src}}" alt="First slide">
-      </mdb-carousel-item>
-    </ng-container>
-  </mdb-carousel>
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/137857207" allowfullscreen></iframe>
+  </div>
 </div>

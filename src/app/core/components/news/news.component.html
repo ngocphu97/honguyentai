@@ -1,32 +1,23 @@
-<div class="list-group list-group-custom">
-  <a class="list-group-item list-group-item-action active list-group-item-custom-head">
-    Tin tức
+<div class="title">
+  <h3>Tin tức</h3>
+  <a routerLink="/chinguyentai/them-tin-tuc" class="btn btn-sm btn-primary indigo pull-right">
+    <i class="fas fa-plus"></i> Thêm tin tức mới
   </a>
+</div>
 
-  <div class="add-news">
-      <a routerLink="/chinguyentai/them-tin-tuc" class="btn btn-primary indigo pull-right">
-        <i class="fas fa-plus"></i> Thêm tin tức mới
-      </a>
-  </div>
+<p *ngIf="news.length === 0" style="text-align: center">
+  <img src="https://loading.io/spinners/harmony/lg.harmony-taiji-spinner.gif" class="img-fluid" alt="">
+</p>
 
-  <p *ngIf="news.length === 0" style="text-align: center">
-    <span>Chưa có gì cả</span>
-    <img src="https://assets.materialup.com/uploads/77a5d214-0a8a-4444-a523-db0c4e97b9c0/preview.jpg" class="img-fluid" alt="">
-  </p>
+<div *ngIf="news.length > 0">
+  <div class="media" *ngFor="let n of news">
+    <img class="card-img-100 d-flex mr-3" src="{{n.image}}" alt="Generic placeholder image">
+    <div class="media-body">
+      <h6 class="font-weight-bold mt-0">
+        <a routerLink="/chinguyentai/tin-tuc/{{n.id}}">{{n.title}}</a>
+      </h6>
 
-  <div *ngIf="news.length > 0" class="list-group-item list-group-item-action list-group-item-action-custom">
-    <div class="news-list">
-      <ul class="list-unstyled">
-        <li class="media" *ngFor="let n of news">
-          <img class="mr-3 news-thumnail" src="{{n.image}}" alt="Hình ảnh">
-          <div class="media-body">
-            <h5 class="mt-0 mb-1"> {{n.title}}</h5>
-            <br>
-            <p>{{n.date}}</p>
-            <a routerLink="/chinguyentai/tin-tuc/{{n.id}}" class="float-right">Xem thêm</a>
-          </div>
-        </li>
-      </ul>
-
+      <small>{{n.date | date:"short"}}</small>
     </div>
   </div>
+</div>

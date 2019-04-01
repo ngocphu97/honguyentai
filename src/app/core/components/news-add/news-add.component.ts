@@ -9,6 +9,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NewsAddComponent implements OnInit {
 
+  selectedFile = null;
+  imagePreview: any;
+
+  postStatus = false;
+
   afuConfig = {
     uploadAPI: {
       url: 'https://www.jsonstore.io/2bed3d6b6afd52a87b7e793dbec5c9045e39f3cf2fa900abbbe9b6e8f088b895/imageTest',
@@ -22,7 +27,7 @@ export class NewsAddComponent implements OnInit {
 
   editorValue = '';
   newsTitle = '';
-  readonly = false;
+  readonly: boolean;
 
   editorConfig: any = {
     forceEnterMode: true,
@@ -40,11 +45,6 @@ export class NewsAddComponent implements OnInit {
     ],
     removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar'
   };
-
-  selectedFile = null;
-  imagePreview: any;
-
-  postStatus = false;
 
   constructor(private service: TreeService, private http: HttpClient) { }
 
@@ -69,18 +69,22 @@ export class NewsAddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.postNews(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview).subscribe(
-      data => {
-        if (data.ok) {
-          this.postStatus = true;
-          console.log('POST Request is successful ', data.ok);
+    this.service.postNews(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview)
+      .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
+  }
+
+  postDocument() {
+    this.service.postDocument(this.uuidv4(), this.newsTitle, this.editorValue)
+      .subscribe(
+        (data) => {
+          if (data.ok) {
+            this.postStatus = true;
+          }
+        },
+        () => {
+          this.postStatus = false;
         }
-      },
-      error => {
-        this.postStatus = false;
-        console.log('Error', error);
-      }
-    );
+      );
   }
 
 }
