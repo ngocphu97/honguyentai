@@ -33,6 +33,7 @@
     "ngx-ckeditor": "^0.3.2",
     "ngx-pagination": "^3.2.1",
     "ngx-quill": "^4.3.3",
+    "orgchart": "^2.1.2",
     "rxjs": "~6.2.0",
     "treant-js": "^1.0.1",
     "zone.js": "~0.8.26"

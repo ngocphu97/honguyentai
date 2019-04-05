@@ -21,6 +21,7 @@ import { WorshipingMeritComponent } from './main-news/worshiping-merit/worshipin
 import { ConnectPeopleComponent } from './main-news/connect-people/connect-people.component';
 import { HistoryComponent } from './main-news/history/history.component';
 import { IntroduceComponent } from './main-news/introduce/introduce.component';
+import { OrgChartComponent } from './org-chart/org-chart.component';
 
 export const components = [
   NewsComponent,
@@ -45,5 +46,7 @@ export const components = [
   WorshipingMeritComponent,
   ConnectPeopleComponent,
   HistoryComponent,
-  IntroduceComponent
+  IntroduceComponent,
+
+  OrgChartComponent
 ];
