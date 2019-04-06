@@ -1,0 +1,19 @@
+:host::ng-deep {
+  table {
+    border-collapse: inherit;
+
+    .google-visualization-orgchart-node {
+      text-align: center;
+      vertical-align: middle;
+      font-family: arial, helvetica;
+      cursor: default;
+      border: 1px solid red;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -webkit-box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 3px;
+      -moz-box-shadow: rgba(0, 0, 0, 0.5) 3px 3px 3px;
+      background-color: transparent;
+      background: -webkit-gradient(linear, left top, left bottom, from(red), to(yellow));
+    }
+  }
+}

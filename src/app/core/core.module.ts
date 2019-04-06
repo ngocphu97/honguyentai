@@ -11,6 +11,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 import { CKEditorModule } from 'ngx-ckeditor';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { containers } from './containers';
@@ -25,7 +27,8 @@ import { components } from './components';
     HttpClientModule,
     CKEditorModule,
     NgxPaginationModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule,
+    Ng2GoogleChartsModule
   ],
   declarations: [
     DashboardComponent,

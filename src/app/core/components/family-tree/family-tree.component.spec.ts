@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrgChartComponent } from './org-chart.component';
+import { FamilyTreeComponent } from './family-tree.component';
 
-describe('OrgChartComponent', () => {
-  let component: OrgChartComponent;
-  let fixture: ComponentFixture<OrgChartComponent>;
+describe('FamilyTreeComponent', () => {
+  let component: FamilyTreeComponent;
+  let fixture: ComponentFixture<FamilyTreeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrgChartComponent ]
+      declarations: [ FamilyTreeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OrgChartComponent);
+    fixture = TestBed.createComponent(FamilyTreeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

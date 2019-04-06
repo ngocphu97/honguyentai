@@ -1,0 +1,15 @@
+.tree-class {
+  overflow-x: auto;
+}
+
+.form {
+  height: 450px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 10px;
+
+  .md-textarea  {
+    padding: 2.5rem 0 !important;
+  }
+}

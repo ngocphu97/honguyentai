@@ -10,7 +10,7 @@ declare var Treant: any;
 @Component({
   selector: 'app-tree',
   templateUrl: './tree.component.html',
-  styleUrls: ['./tree.component.css'],
+  styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class TreeComponent implements OnInit {
