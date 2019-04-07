@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-family-tree',
   templateUrl: './family-tree.component.html',
   styleUrls: ['./family-tree.component.scss']
 })
-export class FamilyTreeComponent implements OnInit {
+export class FamilyTreeComponent {
 
   @ViewChild('familyOrgChart') familyOrgChart;
 
@@ -55,11 +55,7 @@ export class FamilyTreeComponent implements OnInit {
     options: { allowHtml: true }
   };
 
-
   constructor() { }
-
-  ngOnInit() {
-  }
 
   myfunction() {
     if (!this.parent) {

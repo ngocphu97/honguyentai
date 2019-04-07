@@ -24,7 +24,114 @@
 
   <script src="https://cdn.ckeditor.com/4.7.1/full/ckeditor.js"></script>
 
-  <script async src="https://imgbb.com/upload.js" data-auto-insert="html-embed-medium"></script>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOLJJ4zhCryFgb-r5MvGURET3sX894NRc"
+    type="text/javascript"></script>
+
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['table', 'map', 'corechart'],
+      // Note: you will need to get a mapsApiKey for your project.
+      // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+      'mapsApiKey': 'AIzaSyCOLJJ4zhCryFgb-r5MvGURET3sX894NRc'
+    });
+    google.charts.setOnLoadCallback(initialize);
+
+    function initialize() {
+      var query = new google.visualization.Query('https://spreadsheets.google.com/pub?key=pCQbetd-CptF0r8qmCOlZGg');
+      query.send(draw);
+      director = new google.maps.DirectionsService();
+    }
+
+    function draw(response) {
+      if (response.isError()) {
+        alert('Error in query');
+      }
+
+      var geoData = google.visualization.arrayToDataTable([
+        ['Lat', 'Lon', 'Vị trí'],
+        [20.815868, 106.089038, 'Dương A Nam Định'],
+        [21.116236, 105.958130, 'Đông Ngàn Bắc Ninh'],
+      ]);
+
+      var geoView = new google.visualization.DataView(geoData);
+      geoView.setColumns([0, 1]);
+
+      var table = new google.visualization.Table(document.getElementById('table_div'));
+
+      table.draw(geoData, {
+        showRowNumber: false,
+        width: '100%',
+        height: '100%'
+      });
+
+      var options = {
+        mapType: 'styledMap',
+        zoomLevel: 10,
+        showTooltip: true,
+        showInfoWindow: true,
+        showLine: true,
+        maps: {
+          styledMap: {
+            name: 'Địa Đồ',
+            styles: [{
+                featureType: 'poi.attraction',
+                stylers: [{
+                  color: '#fce8b2'
+                }]
+              },
+              {
+                featureType: 'road.highway',
+                stylers: [{
+                  hue: '#0277bd'
+                }, {
+                  saturation: 0
+                }]
+              },
+              {
+                featureType: 'road.highway',
+                elementType: 'labels.icon',
+                stylers: [{
+                  hue: '#000'
+                }, {
+                  saturation: 100
+                }, {
+                  lightness: 0
+                }]
+              },
+              {
+                featureType: 'landscape',
+                stylers: [{
+                  hue: '#259b24'
+                }, {
+                  saturation: 10
+                }, {
+                  lightness: 0
+                }]
+              }
+            ]
+          }
+        }
+      };
+
+      var map = new google.visualization.Map(document.getElementById('map_div'));
+
+      map.draw(geoData, options);
+
+      google.visualization.events.addListener(table, 'select',
+        () => {
+          map.setSelection(table.getSelection());
+        });
+
+      google.visualization.events.addListener(map, 'select',
+        () => {
+          table.setSelection(map.getSelection());
+        });
+    }
+
+  </script>
 
 </head>
 
@@ -298,7 +405,12 @@
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
   </script>
 
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
+
+
+
+
+  <!-- <script type="text/javascript" src="js/mdb.min.js"></script> -->
 
 </body>
 
