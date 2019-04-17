@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { TreeNode } from '../models/TreeNode';
-import { TreeService } from '../tree.service';
-import * as $ from 'jquery';
-import { ActivatedRoute } from '@angular/router';
-import { map, timeout } from 'rxjs/operators';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { AngularFireUploadTask, AngularFireStorage } from 'angularfire2/storage';
+import { Observable } from 'rxjs';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { finalize, tap } from 'rxjs/operators';
 
 declare var Treant: any;
 
@@ -13,173 +12,68 @@ declare var Treant: any;
   styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class TreeComponent implements OnInit {
+export class TreeComponent {
 
-  interval: any;
+  // Main task
+  task: AngularFireUploadTask;
 
-  treeName = '';
-  treant: any;
-  treeId = 1;
+  // Progress monitoring
+  percentage: Observable<number>;
 
-  private options: any = {
-    container: '#treant-id',
-    levelSeparation: 20,
-    siblingSeparation: 15,
-    subTeeSeparation: 15,
-    rootOrientation: 'NORTH',
-    scrollbar: 'native',
-    node: {
-      HTMLclass: 'treant-class',
-      drawLineThrough: false
-    },
-    connectors: {
-      type: 'bCurve',
-      style: {
-        'stroke-width': 2,
-        'stroke': 'grey'
-      }
+  snapshot: Observable<any>;
+
+  // Download URL
+  downloadURL: Observable<string>;
+
+  // State for dropzone CSS toggling
+  isHovering: boolean;
+
+  constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
+
+
+  toggleHover(event: boolean) {
+    this.isHovering = event;
+  }
+
+  startUpload(event: FileList) {
+    // The File object
+    const file = event.item(0);
+
+    // Client-side validation example
+    if (file.type.split('/')[0] !== 'image') {
+      console.error('unsupported file type :( ');
+      return;
     }
-  };
 
-  configModal = { position: 'bottom' };
+    // The storage path
+    const path = `test/${new Date().getTime()}_${file.name}`;
 
-  rootNodeArray: Array<any> = [];
+    // Totally optional metadata
+    const customMetadata = { app: 'My AngularFire-powered PWA!' };
 
-  rootNodePersonName = [
-    {
-      name: 'Nguyễn Tài 1',
-      id: 1
-    },
-    {
-      name: 'Nguyễn Tài 2',
-      id: 2
-    },
-    {
-      name: 'Nguyễn Tài 3',
-      id: 3
-    },
-    {
-      name: 'Nguyễn Tài 4',
-      id: 4
-    },
-    {
-      name: 'Nguyễn Tài 5',
-      id: 5
-    },
-    {
-      name: 'Nguyễn Tài 6',
-      id: 6
-    },
-    {
-      name: 'Nguyễn Tài 7',
-      id: 7
-    },
-    {
-      name: 'Nguyễn Tài 8',
-      id: 8
-    },
-    {
-      name: 'Nguyễn Tài 9',
-      id: 9
-    },
-    {
-      name: 'Nguyễn Tài 10',
-      id: 10
-    },
-    {
-      name: 'Nguyễn Tài 11',
-      id: 11
-    },
-    {
-      name: 'Nguyễn Tài 12',
-      id: 12
-    },
+    // The main task
+    this.task = this.storage.upload(path, file, { customMetadata });
 
-  ];
-
-  loading = true;
-
-  rootNode: TreeNode = {
-    text: {
-      name: 'Nguyễn Tài Huyềng',
-      contact: {
-        val: '',
-        href: '/pha-do',
-        target: '_self'
-      }
-    },
-    HTMLclass: 'angular',
-    HTMLid: 'tree-root',
-    id: 0,
-    gender: 'male',
-    image: 'https://img.icons8.com/color/1600/matrix-architect.png'
-  };
-
-  constructor(
-    private service: TreeService,
-    private route: ActivatedRoute,
-  ) {
-    this.service.nodesChange$.subscribe((node: TreeNode) => {
-      if (node.HTMLid !== 'tree-root') {
-        this.treant.tree.addNode(node.parent, node);
-      }
-    });
+    // Progress monitoring
+    this.percentage = this.task.percentageChanges();
+    // this.snapshot = this.task.snapshotChanges().pipe(
+    //   // The file's download URL
+    //   finalize(() => this.downloadURL = fileRef.getDownloadURL()),
+    //   tap(snap => {
+    //     console.log(snap)
+    //     if (snap.bytesTransferred === snap.totalBytes) {
+    //       // Update firestore on completion
+    //       this.db.collection('photos').add({ path, size: snap.totalBytes })
+    //     }
+    //   })
+    // );
   }
 
-  ngOnInit() {
-    this.addRootNode();
-    this.treeId = +this.route.snapshot.paramMap.get('id');
-    this.treeName = 'Chi' + this.treeId;
-    let treeNode = this.rootNode;
-    this.rootNodeArray.forEach(r => {
-      if (r.id === this.treeId) {
-        treeNode = r;
-      }
-    });
 
-    setTimeout(() => {
-      this.getData(this.treeName, treeNode);
-    }, 2000);
+
+  // Determines if the upload task is active
+  isActive(snapshot) {
+    return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
   }
 
-  addRootNode() {
-    this.rootNodePersonName.forEach(r => {
-      const rootNode: TreeNode = {
-        text: {
-          name: r.name,
-          contact: {
-            val: 'Chi tiết',
-            href: '/chi-tiet/thanh-vien/1',
-            target: '_self'
-          }
-        },
-        HTMLclass: 'angular',
-        HTMLid: 'tree-root',
-        id: r.id,
-        gender: 'male',
-        image: 'https://img.icons8.com/color/1600/matrix-architect.png',
-      };
-      this.rootNodeArray.push(rootNode);
-    });
-  }
-
-  getData(treeName, treeRoot) {
-    this.loading = true;
-    let treeArray = [];
-    const rootNode = treeRoot;
-    this.treant = new Treant([this.options, rootNode], Function.prototype, $);
-    this.service.addNode(rootNode);
-    this.service.getData1(treeName)
-      .pipe(map((data) => {
-        treeArray = Object.values(data.result);
-        console.log(treeArray);
-        return treeArray;
-      }))
-      .subscribe(tree => {
-        tree.forEach(node => {
-          this.service.addNode(node);
-        });
-        this.loading = false;
-      });
-  }
 }

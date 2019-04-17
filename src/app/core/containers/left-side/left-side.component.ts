@@ -10,7 +10,7 @@ export class LeftSideComponent implements OnInit {
   categories = [
     {
       name: 'Lịch sử dòng họ',
-      link: ''
+      link: '/chinguyentai/lich-su'
     },
     {
       name: 'Doanh nhân nổi tiếng',

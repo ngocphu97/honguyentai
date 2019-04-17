@@ -40,4 +40,7 @@
   font-size: large;
 }
 
-
+:host::ng-deep.active {
+  color: yellow;
+  font-weight: bolder;
+}

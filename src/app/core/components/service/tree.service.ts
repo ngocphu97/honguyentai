@@ -10,6 +10,12 @@ export class TreeService {
   url = 'https://www.jsonstore.io/2bed3d6b6afd52a87b7e793dbec5c9045e39f3cf2fa900abbbe9b6e8f088b895/';
   informationArray = [];
 
+  afuConfig = {
+    uploadAPI: {
+      url: `https://www.jsonstore.io/2bed3d6b6afd52a87b7e793dbec5c9045e39f3cf2fa900abbbe9b6e8f088b895/imageLib/id`
+    }
+  };
+
   constructor(private http: HttpClient) { }
 
   // news
@@ -89,5 +95,7 @@ export class TreeService {
     };
     return this.http.post(this.url + '/imageLib/' + id, object);
   }
+
+
 
 }

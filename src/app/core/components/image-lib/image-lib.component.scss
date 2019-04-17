@@ -124,3 +124,34 @@
   display: flex;
   width: 50%;
 }
+
+.upload-process {
+  margin: 1rem 0;
+
+  .alert {
+    margin: 0;
+  }
+
+  .progress {
+    margin-top: -1rem;
+  }
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.inputfile+label {
+  color: white;
+  display: inline-block;
+}
+
+.inputfile:focus+label,
+.inputfile+label:hover {
+  background-color: red;
+}

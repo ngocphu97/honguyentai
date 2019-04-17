@@ -6,6 +6,7 @@ import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 
 import { routes } from './app.routing';
+import { DropZoneDirective } from './drop-zone.directive';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { routes } from './app.routing';
     RouterModule.forRoot(routes)
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    DropZoneDirective
   ],
   providers: [],
   bootstrap: [AppComponent]

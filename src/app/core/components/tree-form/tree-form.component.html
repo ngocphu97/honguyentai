@@ -2,46 +2,48 @@
   Hãy chọn thành viên để tiếp tục.
 </div>
 
-<form #nodeForm *ngIf="parent" (ngSubmit)="onAddNode(nodeStructure)" class="form" autocomplete="off">
+<perfect-scrollbar style="max-height: 400px;" [config]="config">
+  <form #nodeForm *ngIf="parent" (ngSubmit)="onAddNode(nodeStructure)" class="form" autocomplete="off">
 
-  <div class="md-form">
-    <input type="text" id="form1" class="form-control">
-    <label for="form1">Example label</label>
-  </div>
+    <div class="md-form">
+      <input type="text" id="form1" class="form-control">
+      <label for="form1">Example label</label>
+    </div>
 
-  <div class="md-form">
-    <input type="text" placeholder="Người thân ..." name="name" value="{{parent}}" class="form-control" required>
-  </div>
+    <div class="md-form">
+      <input type="text" placeholder="Người thân ..." name="name" value="{{parent}}" class="form-control" required>
+    </div>
 
-  <div class="md-form">
-    <select id="select-gender" class="form-control" [(ngModel)]="gender" name="gender">
-      <option disabled selected value> Giới tính </option>
-      <option>Options</option>
-    </select>
-  </div>
+    <div class="md-form">
+      <select id="select-gender" class="form-control" [(ngModel)]="gender" name="gender">
+        <option disabled selected value> Giới tính </option>
+        <option>Options</option>
+      </select>
+    </div>
 
-  <div class="md-form">
-    <input placeholder="Năm sinh" type="text" name="birthDay" class="form-control">
-  </div>
+    <div class="md-form">
+      <input placeholder="Năm sinh" type="text" name="birthDay" class="form-control">
+    </div>
 
-  <div class="md-form">
-    <input placeholder="Năm mất" type="text" name="deadDay" class="form-control">
-  </div>
+    <div class="md-form">
+      <input placeholder="Năm mất" type="text" name="deadDay" class="form-control">
+    </div>
 
-  <div class="md-form">
-    <label class="form-control-label">Thông tin</label>
-    <textarea class="md-textarea form-control " name="infomation" aria-label="With textarea"></textarea>
-  </div>
+    <div class="md-form">
+      <label class="form-control-label">Thông tin</label>
+      <textarea class="md-textarea form-control " name="infomation" aria-label="With textarea"></textarea>
+    </div>
 
-  <div class="md-form">
-    <button type="submit" class="btn btn-primary indigo">
-      <i class="fas fa-plus"></i> Thêm
-    </button>
+    <div class="md-form">
+      <button type="submit" class="btn btn-primary indigo">
+        <i class="fas fa-plus"></i> Thêm
+      </button>
 
-    <a class="btn btn-primary indigo" href="/chinguyentai/pha-do">
-      <i class="fa fa-save"></i> Lưu dữ liệu
-    </a>
+      <a class="btn btn-primary indigo" href="/chinguyentai/pha-do">
+        <i class="fa fa-save"></i> Lưu dữ liệu
+      </a>
 
-  </div>
+    </div>
 
-</form>
+  </form>
+</perfect-scrollbar>

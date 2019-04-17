@@ -2,15 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { TreeService } from '../service/tree.service';
 import { map } from 'rxjs/operators';
 
+declare const firebase: any;
+
 @Component({
   selector: 'app-image-lib',
   templateUrl: './image-lib.component.html',
   styleUrls: ['./image-lib.component.scss']
 })
 export class ImageLibComponent implements OnInit {
-
-  page: any;
+  p = 1;
   images = [];
+  uploadProcess = 0;
+  uploadImage = null;
+  previewImage = null;
+
+  storageRef = firebase.storage().ref();
 
   constructor(private service: TreeService) { }
 
@@ -24,7 +30,6 @@ export class ImageLibComponent implements OnInit {
       map((data) => {
         const obj = Object.values(data);
         newsArray = Object.values(obj[0]);
-        console.log(newsArray);
         return newsArray;
       })
     ).subscribe(val => {
@@ -42,7 +47,7 @@ export class ImageLibComponent implements OnInit {
     });
   }
 
-  onSelectImg(src, id) {
+  onSelectImg(src) {
     const modal = document.getElementById('imagePreviewModal');
     const modalImg = document.getElementById('imagePreview') as HTMLElement;
 
@@ -66,15 +71,65 @@ export class ImageLibComponent implements OnInit {
   uploadImg(url) {
     const id = this.uuidv4();
     const src = url;
-    this.service.postImage(id, src).subscribe(
-      data => {
-        if (data.ok) {
-          console.log('POST Request is successful ', data.ok);
-        }
-      },
-      error => {
-        console.log('Error', error);
+    this.service.postImage(id, src).subscribe((data) => {
+      if (data.ok) {
+        return data.ok;
       }
-    );
+    }, (error) => {
+      return error;
+    });
   }
+
+  onSelectImage(image: any) {
+    this.uploadImage = image.target.files[0];
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewImage = reader.result;
+    };
+    reader.readAsDataURL(image.target.files[0]);
+
+  }
+
+  uploadImageToFirebase() {
+
+    const metadata = {
+      contentType: 'image/jpeg'
+    };
+
+    const uploadTask = this.storageRef.child('assets/' + this.uploadImage.name).put(this.uploadImage, metadata);
+
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapshot) => this.catchUploadProcess(snapshot),
+      (error) => this.catchUploadError(error));
+
+    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+      this.uploadImg(downloadURL);
+    });
+  }
+
+  deleteImageFromFirebase() {
+    const desertRef = this.storageRef.child('renamed-mountains.jpg');
+
+    desertRef.delete().then((res) => {
+      // console.log(res);
+      return res;
+    });
+  }
+
+  catchUploadProcess(snapshot): number {
+    return this.uploadProcess = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  }
+
+  catchUploadError(error: any) {
+    switch (error.code) {
+      case 'storage/unauthorized':
+        break;
+      case 'storage/canceled':
+        break;
+      case 'storage/unknown':
+        break;
+    }
+  }
+
 }

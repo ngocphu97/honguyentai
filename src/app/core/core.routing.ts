@@ -85,6 +85,10 @@ export const routes: Routes = [
         path: 'thac-mac',
         component: QuestionsComponent
       },
+      {
+        path: 'demo',
+        component: TreeComponent
+      },
     ]
   },
 ];
