@@ -136,7 +136,7 @@ export class FamilyTreeComponent implements OnInit {
 
   addData() {
     const id = 'b37291df-5958-49e7-8133-c70e46448ba4';
-    this.service.postTreeData(id, this.fakeData).subscribe(res => console.log(res));
+    this.service.postTreeData(id, this.familyDataTable).subscribe(res => console.log(res));
   }
 
   delTree() {
