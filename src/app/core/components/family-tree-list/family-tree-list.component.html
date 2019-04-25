@@ -1,0 +1,29 @@
+<div class="mb-3">
+  <input type="text" placeholder="Tên phả đồ ..." #name [(ngModel)]="selectedName">
+  <input type="text" placeholder="Thông tin cơ bản ..." #basicInformation [(ngModel)]="selectedBasicInformation">
+
+  <button (click)="addData(name.value, basicInformation.value)">Thêm phả</button>
+  <button (click)="updateNewData(name.value, basicInformation.value)">Thay đổi</button>
+
+  <div *ngIf="annouce" class="alert alert-success" role="alert">
+    Đã thêm thành công.
+  </div>
+</div>
+
+<ul class="timeline">
+  <li *ngFor="let item of familyListData; let i = index" [class.timeline-inverted]="i%2 ===0">
+    <div class="timeline-badge"><i class="{{item.icon}}"></i></div>
+    <div class="timeline-panel z-depth-1">
+      <div class="timeline-heading">
+        <h4 class="timeline-title">{{item.name}}</h4>
+        <i class="fa fa-pencil" (click)="editData(item.name, item.basicInformation, item.id)"></i>
+      </div>
+      <div class="timeline-body">
+        <p>{{item.basicInformation}} <br>
+          {{item.id}}
+        </p>
+        <a routerLink="{{item.link}}">Xem chi tiết</a>
+      </div>
+    </div>
+  </li>
+</ul>

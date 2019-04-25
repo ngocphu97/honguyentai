@@ -1,15 +1,8 @@
-<div *ngIf="member">
-    <h2>{{member.text.name}}</h2>
-
-    <p>{{member.title}}</p>
-    <p>{{member.gender}}</p>
-    <p>{{member.birthDay}}</p>
-    <p>{{member.deadDay}}</p>
-    <p>{{member.infomation}}</p>
-    <p>{{member.parent.text.name}}</p>
-
+<div *ngIf="!parent" class="alert alert-warning" role="alert">
+    Hãy chọn thành viên để tiếp tục.
+  </div>
   
-
-</div>
-
-<!-- <button (click)="onDeleteMember(member.id)">Delete this member</button> -->
+  <perfect-scrollbar style="max-height: 400px;" [config]="config">
+    <label for="">Họ vả tên: </label> <strong>{{parent}}</strong>
+  </perfect-scrollbar>
+  

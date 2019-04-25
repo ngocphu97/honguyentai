@@ -9,7 +9,6 @@ import { NewsAddComponent } from './news-add/news-add.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { StemmataComponent } from './stemmata/stemmata.component';
-import { TreeComponent } from './tree/tree.component';
 import { GenealogyHistoryComponent } from './genealogy-history/genealogy-history.component';
 import { AnnouncementComponent } from './main-news/announcement/announcement.component';
 import { FamousPeopleComponent } from './main-news/famous-people/famous-people.component';
@@ -22,6 +21,7 @@ import { HistoryComponent } from './main-news/history/history.component';
 import { IntroduceComponent } from './main-news/introduce/introduce.component';
 import { FamilyTreeComponent } from './family-tree/family-tree.component';
 import { TreeFormComponent } from './tree-form/tree-form.component';
+import { FamilyTreeListComponent } from './family-tree-list/family-tree-list.component';
 
 export const components = [
   NewsComponent,
@@ -35,7 +35,6 @@ export const components = [
   NewsDetailComponent,
   QuestionsComponent,
   StemmataComponent,
-  TreeComponent,
   TreeFormComponent,
   GenealogyHistoryComponent,
   AnnouncementComponent,
@@ -47,5 +46,6 @@ export const components = [
   ConnectPeopleComponent,
   HistoryComponent,
   IntroduceComponent,
-  FamilyTreeComponent
+  FamilyTreeComponent,
+  FamilyTreeListComponent
 ];

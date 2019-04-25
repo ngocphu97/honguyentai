@@ -1,10 +1,15 @@
-<google-chart #familyOrgChart [data]="familyData" (chartSelect)="onSelect($event)"></google-chart>
+<div *ngIf="familyData.dataTable.length === 0">
+  Đang lấy dữ liệu ...
+</div>
 
+
+<div class="family-chart" *ngIf="familyData.dataTable.length > 0">
+  <google-chart #familyOrgChart [data]="familyData" (chartSelect)="onSelect($event)"></google-chart>
+</div>
 
 <button type="button" mdbBtn color="indigo" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
   Thêm thành viên
 </button>
-
 
 <div mdbModal #basicModal="mdbModal" [config]='{backdrop: false, ignoreBackdropClick: true}' class="modal fade top"
   tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
@@ -17,17 +22,70 @@
         <h4 class="modal-title w-100" id="myModalLabel">Thêm thành viên mới</h4>
       </div>
       <div class="modal-body">
-        <app-tree-form [parent]="name"></app-tree-form>
+        <p>
+          Thành viên đang được chọn: <strong>{{parentNodeName}}</strong>
+        </p>
+
+        <p>
+          <strong>Nhập chi tiết thành viên mới</strong>
+        </p>
+
+        <label for="newName">Họ và tên</label>
+        <input type="text" class="form-control" id="newName" #inputNewNodeName>
+
+        <label for="newBirthDay">Ngày sinh</label>
+        <input type="text" class="form-control" id="newBirthDay" #inputNewNodeName>
+
+        <label for="newName">Họ và tên</label>
+        <input type="text" class="form-control" id="newName" #inputNewNodeName>
+
+        <button class="btn btn-sm indigo pull-right mt-3" (click)="addNode(inputNewNodeName.value)">Lưu lại</button>
+        <!-- <app-tree-form [parent]="name"></app-tree-form> -->
       </div>
     </div>
   </div>
 </div>
 
 
+<button type="button" mdbBtn color="indigo" class="relative waves-light" (click)="detailModal.show()" mdbWavesEffect>
+  Xem chi tiết
+</button>
+
+<div mdbModal #detailModal="mdbModal" [config]='{backdrop: false, ignoreBackdropClick: true}' class="modal fade top"
+  tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-side modal-top-right" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="detailModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Chi tiết</h4>
+      </div>
+      <div class="modal-body">
+        <app-member-detail [parent]="name"></app-member-detail>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
 Thêm <br>
-<input type="text" [(ngModel)]="name">
-<button (click)="myfunction()">them</button>
+<input type="text" [(ngModel)]="parentNodeName" #inputNewNodeName>
+<button (click)="addNode(inputNewNodeName.value)">them</button>
 <br>
 Sửa <br>
 <input type="text" placeholder="..." value="{{name}}" #edit>
-<button (click)="onEdit(name)">edit</button>
+<button (click)="editNode(edit.value)">edit</button>
+<br>
+Lưu lại mọi thứ
+<button (click)="addData()">Lưu</button>
+<br>
+Xóa thành viên đang chọn
+<button (click)="deleteNode()">Xóa</button>
+<br>
+xóa cây <br>
+<button (click)="delTree()">Xóa cây</button>
+
+<br>
+Get cai value tu selectedNode
+<button (click)="getValueFromSelectedNode()">get vlue</button>

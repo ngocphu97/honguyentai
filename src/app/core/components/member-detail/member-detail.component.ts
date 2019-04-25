@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TreeService } from '../tree.service';
 import { BehaviorSubject } from 'rxjs';
+import { TreeService } from '../service/tree.service';
 
 @Component({
   selector: 'app-member-detail',
@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./member-detail.component.scss']
 })
 export class MemberDetailComponent implements OnInit {
+  @Input() parent: any;
 
   id = '';
   member: any;
@@ -18,27 +19,27 @@ export class MemberDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private service: TreeService) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.getMemberById(this.id);
+    // this.id = this.route.snapshot.paramMap.get('id');
+    // this.getMemberById(this.id);
   }
 
-  getMemberById(id) {
-    const treeName = 'profileChi1';
-    this.service.getNodeById(id).subscribe((data) => {
-          const mem = data.result;
-          this.pipeMember(mem);
-          this.data$.next(mem);
-        }
-      );
-  }
+  // getMemberById(id) {
+  //   const treeName = 'profileChi1';
+  //   this.service.getNodeById(id).subscribe((data) => {
+  //     const mem = data.result;
+  //     this.pipeMember(mem);
+  //     this.data$.next(mem);
+  //   }
+  //   );
+  // }
 
-  pipeMember(mem) {
-    console.log(mem);
-    this.member = mem;
-  }
+  // pipeMember(mem) {
+  //   console.log(mem);
+  //   this.member = mem;
+  // }
 
-  onDeleteMember(HTMLid) {
-    console.log(HTMLid);
-    this.service.deleteNode(HTMLid);
-  }
+  // onDeleteMember(HTMLid) {
+  //   console.log(HTMLid);
+  //   this.service.deleteNode(HTMLid);
+  // }
 }

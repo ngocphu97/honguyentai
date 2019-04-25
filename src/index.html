@@ -35,9 +35,7 @@
       storageBucket: 'gudjob-upload-ph-1550280943491.appspot.com',
       messagingSenderId: '254512250541'
     };
-
     firebase.initializeApp(config);
-
   </script>
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -48,8 +46,6 @@
   <script type="text/javascript">
     google.charts.load('current', {
       'packages': ['table', 'map', 'corechart'],
-      // Note: you will need to get a mapsApiKey for your project.
-      // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
       'mapsApiKey': 'AIzaSyCOLJJ4zhCryFgb-r5MvGURET3sX894NRc'
     });
     google.charts.setOnLoadCallback(initialize);
@@ -409,6 +405,9 @@
     </div>
   </app-root>
 
+  <div id="table_div" style="display: none"></div>
+  <div id="map_div" style="display: none"></div>
+
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -419,14 +418,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
   </script>
-
-  <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
-
-
-
-
-  <!-- <script type="text/javascript" src="js/mdb.min.js"></script> -->
-
 </body>
 
 </html>

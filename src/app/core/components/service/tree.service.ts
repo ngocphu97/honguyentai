@@ -18,8 +18,6 @@ export class TreeService {
 
   constructor(private http: HttpClient) { }
 
-  // news
-
   getNews(): any {
     return this.http.get(this.url + 'news');
   }
@@ -96,6 +94,31 @@ export class TreeService {
     return this.http.post(this.url + '/imageLib/' + id, object);
   }
 
+  postTreeData(id: string, data: any) {
+    return this.http.put(this.url + '/familyTreeData/' + id, data);
+  }
 
+  getTreeData(id: string) {
+    return this.http.get(this.url + '/familyTreeData/' + id);
+  }
 
+  getTreeListId() {
+    return this.http.get(this.url + '/familyTreeData/');
+  }
+
+  createFamilyTreeList(familyItem) {
+    return this.http.post(this.url + '/familyTreeList/' + familyItem.id, familyItem);
+  }
+
+  getFamilyListData() {
+    return this.http.get(this.url + '/familyTreeList');
+  }
+
+  delTree(id) {
+    return this.http.delete(this.url + '/familyTreeData/' + id);
+  }
+
+  updateFamilyListData(updateFamilyData, id) {
+    return this.http.put(this.url + '/familyTreeList/' + id, updateFamilyData);
+  }
 }
