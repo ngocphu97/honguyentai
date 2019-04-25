@@ -26,6 +26,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
+const firebase = {
+  apiKey: 'AIzaSyBxvIax4S5ItOyeq7YT-POx4UTd1-L5XYM',
+  authDomain: 'honguyentai-f9d56.firebaseapp.com',
+  databaseURL: 'https://honguyentai-f9d56.firebaseio.com',
+  projectId: 'honguyentai-f9d56',
+  storageBucket: 'honguyentai-f9d56.appspot.com',
+  messagingSenderId: '225000788937'
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -40,7 +49,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     Ng2GoogleChartsModule,
     PerfectScrollbarModule,
 
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebase),
     AngularFirestoreModule,
     AngularFireStorageModule
   ],

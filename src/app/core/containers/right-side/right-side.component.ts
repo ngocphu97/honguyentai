@@ -25,20 +25,23 @@ export class RightSideComponent implements OnInit {
     let newsArray = [];
     this.service.getNews().pipe(
       map((data) => {
+        console.log(data);
         const obj = Object.values(data);
         newsArray = Object.values(obj[0]);
         return newsArray;
       })
     ).subscribe(val => {
+      console.log(val);
       val.forEach(element => {
         const n = {
           id: element.id,
           title: element.title,
           content: element.content,
+          date: element.date
         };
         this.news.push(n);
       });
-    }, error => {
+    }, () => {
       this.news = [];
     });
   }

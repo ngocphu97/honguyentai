@@ -1,33 +1,86 @@
-<div class="border-top" style="background: #fff">
-  <div class="row">
-    <div class="col-12 col-md">
-      <h5 class="list-group-item-custom-head" style="color: #fff">Liên lạc</h5>
+<h2 class="h1-responsive font-weight-bold text-center my-4">Liên hệ</h2>
+
+<p>
+  Để không ngừng nâng cao chất lượng dịch vụ và đáp ứng tốt hơn nữa các yêu cầu của mọi người, chúng tôi mong muốn
+  nhận được các thông tin phản hồi. Nếu Quý khách có bất kỳ thắc mắc hoặc đóng góp nào, xin vui lòng liên hệ với chúng
+  tôi theo thông tin dưới đây. Chúng tôi sẽ phản hồi lại Quý khách trong thời gian sớm nhất.
+</p>
+
+<div class="row">
+  <div class="col-md-12">
+    <form id="contact-form" name="contact-form" method="POST" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="md-form mb-0">
+            <input type="text" id="name" name="from_name" class="form-control" placeholder="Họ và tên ..">
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="md-form mb-0">
+            <input type="text" id="email" name="from_email" class="form-control" placeholder="Email ...">
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="md-form mb-0">
+            <input type="text" id="phone" name="from_phone" class="form-control" placeholder="Số điện thoại ...">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-12">
+          <div class="md-form">
+            <input type="text" id="title" name="from_title" class="form-control" placeholder="Tiêu đề ...">
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="md-form">
+            <textarea type="text" id="message" name="message_html" rows="2" placeholder="Nội dung ..."
+              class="form-control md-textarea"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-md-left">
+        <button class="btn indigo" type="submit">
+          Gửi phản hồi
+        </button>
+      </div>
+    </form>
+
+    <div class="contact-info">
+      <div>
+        <i class="fas fa-home mt-4 fa-2x"></i>
+        <p>0888 210 861</p>
+      </div>
+
+      <div>
+        <i class="fas fa-phone mt-4 fa-2x"></i>
+        <p>0888 210 861</p>
+      </div>
+
+      <div>
+        <i class="fas fa-envelope mt-4 fa-2x"></i>
+        <p>honguyentai.thuongtho@gmail.com</p>
+      </div>
     </div>
+
+
+
   </div>
-
-  <div *ngFor="let f of familyContact" class="row">
-    <div class="col-md-12">
-      <mdb-card>
-
-
-        <!-- <iframe [src]="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15677.922604148289!2d106.66164161977538!3d10.774451099999993!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1547272579755"
-          width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe> -->
-        Hình map
-        <mdb-card-body>
-          <mdb-card-title>
-            <h4>{{f.contactName}}</h4>
-          </mdb-card-title>
-
-          <mdb-card-text>
-            Địa chỉ: {{f.address}}
-            Số điện thoại: {{f.phoneNumber}}
-            Email: {{f.email}}
-          </mdb-card-text>
-
-        </mdb-card-body>
-      </mdb-card>
-    </div>
-  </div>
-
-
 </div>
+<!-- 
+<form id="myform" method="post" (ngSubmit)="onSubmit()">
+  <label>from_name</label>
+  <input type="text" name="from_name" />
+  <label>message_html</label>
+  <input type="text" name="message_html" />
+  <br><br>
+  <button>
+    Send
+  </button>
+</form> -->

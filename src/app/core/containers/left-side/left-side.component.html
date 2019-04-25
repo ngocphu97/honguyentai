@@ -1,8 +1,6 @@
 <div class="left-side-nav">
   <ul>
-    <li class="text-center text-uppercase title">
-      Danh mục
-    </li>
+    <hr class="hr-text" data-content="Danh mục">
     <li *ngFor="let i of categories" class="text-center">
       <a routerLink="{{i.link}}" routerLinkActive="active">{{i.name}}</a>
     </li>

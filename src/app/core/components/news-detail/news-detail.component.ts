@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component } from '@angular/core';
 import { TreeService } from '../service/tree.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -8,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './news-detail.component.html',
   styleUrls: ['./news-detail.component.scss']
 })
-export class NewsDetailComponent implements OnInit {
+export class NewsDetailComponent {
 
   loading = false;
 
@@ -42,18 +41,18 @@ export class NewsDetailComponent implements OnInit {
   imagePreview: any;
   uploadStatus = false;
 
-  constructor(private service: TreeService, private location: Location,
-    private route: ActivatedRoute, private router: Router) { }
-
-  ngOnInit() {
-    this.getNewsById();
+  constructor(
+    private service: TreeService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    route.params.subscribe((val) => {
+      this.getNewsById(val.id);
+    });
   }
 
-  getNewsById() {
-    this.loading = true;
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.service.getNewsById(this.id).subscribe(data => {
-      console.log(data);
+  getNewsById(id: string) {
+    this.service.getNewsById(id).subscribe(data => {
       this.loading = false;
       this.newsTitle = data.result.title;
       this.newsText = data.result.content;

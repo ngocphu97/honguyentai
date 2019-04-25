@@ -1,46 +1,29 @@
-<div class="list-group">
-  <a class="list-group-item list-group-item-action active list-group-item-custom-head text-center">
-    Bài đăng gần đây
-  </a>
-  <div class="list-group-item list-group-item-action list-group-item-action-custom">
-    <p *ngIf="news.length === 0" style="text-align: center">
-      <span>Chưa có gì cả</span>
-      <img src="https://assets.materialup.com/uploads/77a5d214-0a8a-4444-a523-db0c4e97b9c0/preview.jpg"
-        class="img-fluid" alt="">
-    </p>
-    <ul class="list-unstyled">
-      <li class="media" *ngFor="let n of news">
-        <img class="mr-3 thumnail-custom" src="assets/news/1.jpeg">
-        <div class="media-body">
-          <span class="mt-0 mb-1">{{(n.title.length > 20) ? (n.title |  slice:0:15) + '...' : n.title}}</span>
-          {{n.date}}
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
+<div class="right-side-nav">
+  <ul>
+    <hr class="hr-text" data-content="Tin gần đây">
+    <li *ngFor="let i of news" class="text-center">
+      <a routerLink="/chinguyentai/tin-tuc/{{i.id}}">
+        {{(i.title.length > 20) ? (i.title |  slice:0:15) + '...' : i.title}}
+      </a>
+    </li>
 
-<div class="list-group">
-  <a class="list-group-item list-group-item-action active list-group-item-custom-head text-center">
-    Thư viện ảnh
-  </a>
-  <div *ngIf="slideImages.length === 0">
-    <img src="https://loading.io/spinners/harmony/lg.harmony-taiji-spinner.gif" alt="">
-  </div>
-  <mdb-carousel [animation]="'slide'">
-    <ng-container *ngFor="let img of slideImages">
-      <mdb-carousel-item>
-        <img class="d-block w-100" src="{{img.src}}" alt="First slide">
-      </mdb-carousel-item>
-    </ng-container>
-  </mdb-carousel>
-</div>
+    <hr class="hr-text" data-content="Hình ảnh">
+    <li>
+      <mdb-carousel [animation]="'slide'">
+        <ng-container *ngFor="let img of slideImages">
+          <mdb-carousel-item>
+            <img class="w-100" src="{{img.src}}" alt="First slide">
+          </mdb-carousel-item>
+        </ng-container>
+      </mdb-carousel>
+    </li>
 
-<div class="list-group">
-  <a class="list-group-item list-group-item-action active list-group-item-custom-head text-center">
-    Thư viện video
-  </a>
-  <div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/137857207" allowfullscreen></iframe>
-  </div>
+    <hr class="hr-text" data-content="Video">
+    <li>
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item w-100" src="https://player.vimeo.com/video/137857207"
+          allowfullscreen></iframe>
+      </div>
+    </li>
+  </ul>
 </div>

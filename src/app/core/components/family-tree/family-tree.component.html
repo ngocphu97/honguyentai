@@ -62,7 +62,7 @@
         <h4 class="modal-title w-100" id="myModalLabel">Chi tiết</h4>
       </div>
       <div class="modal-body">
-        <app-member-detail [parent]="name"></app-member-detail>
+        <app-member-detail></app-member-detail>
       </div>
     </div>
   </div>
@@ -74,8 +74,8 @@ Thêm <br>
 <button (click)="addNode(inputNewNodeName.value)">them</button>
 <br>
 Sửa <br>
-<input type="text" placeholder="..." value="{{name}}" #edit>
-<button (click)="editNode(edit.value)">edit</button>
+<!-- <input type="text" placeholder="..." value="{{name}}" #edit>
+<button (click)="editNode(edit.value)">edit</button> -->
 <br>
 Lưu lại mọi thứ
 <button (click)="addData()">Lưu</button>
