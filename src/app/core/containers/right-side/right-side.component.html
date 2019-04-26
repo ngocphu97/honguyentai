@@ -1,3 +1,24 @@
+<input type="text" #search>
+<button (click)="onSearch(search.value)">Tim</button>
+
+<ng-container *ngIf="searchArray !== null">
+  <ul>
+    <li *ngFor="let item of searchArray">
+      {{item}}
+    </li>
+  </ul>
+
+  <ng-container *ngIf="searchArray.length === 0 && searchKey !== ''">
+    Không có nội dung cần tìm
+  </ng-container>
+
+  <ng-container *ngIf="searchKey === ''">
+    Chưa nhập nội dung tìm
+  </ng-container>
+
+</ng-container>
+
+
 <div class="right-side-nav">
   <ul>
     <hr class="hr-text" data-content="Tin gần đây">

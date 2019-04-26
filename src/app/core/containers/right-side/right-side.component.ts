@@ -11,8 +11,9 @@ import { TreeService } from '../../components/service/tree.service';
 export class RightSideComponent implements OnInit {
 
   slideImages = [];
-
   news = [];
+  searchArray: Array<any> = null;
+  searchKey = '';
 
   constructor(private service: TreeService) { }
 
@@ -74,4 +75,12 @@ export class RightSideComponent implements OnInit {
     return this.slideImages;
   }
 
+  onSearch(key) {
+    this.searchKey = key;
+    this.searchArray = [];
+    if (this.searchKey === '') {
+      return;
+    }
+    this.searchArray = this.news.map(x => x.title.toLowerCase()).filter(title => title.includes(this.searchKey));
+  }
 }

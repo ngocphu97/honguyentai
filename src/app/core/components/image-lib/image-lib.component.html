@@ -46,8 +46,8 @@
           <div class="mask"></div>
         </a>
       </div>
-      <button class="btn btn-sm btn-primary indigo" (click)="onSelectImg(img.src, img.id)">
-        <i class="fas fa-expand-arrows-alt"></i> Phóng to
+      <button class="btn btn-sm indigo btn-zoom" (click)="onSelectImg(img.src, img.id)">
+        <i class="fas fa-search"></i>
       </button>
     </mdb-card>
   </div>
@@ -56,8 +56,6 @@
   <div class="pagination">
     <pagination-controls (pageChange)="p = $event" previousLabel="Trang trước" nextLabel="Trang sau">
     </pagination-controls>
-
-
   </div>
 
 </div>

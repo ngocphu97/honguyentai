@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TreeService } from '../service/tree.service';
 import { map } from 'rxjs/operators';
 
-declare const firebase: any;
+declare const firebase, baguetteBox: any;
 
 @Component({
   selector: 'app-image-lib',
@@ -22,6 +22,7 @@ export class ImageLibComponent implements OnInit {
 
   ngOnInit() {
     this.getImage();
+    baguetteBox.run('.tz-gallery');
   }
 
   getImage() {

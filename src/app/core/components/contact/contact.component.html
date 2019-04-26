@@ -1,5 +1,9 @@
 <h2 class="h1-responsive font-weight-bold text-center my-4">Liên hệ</h2>
 
+<div class="alert alert-success" role="alert" *ngIf="annouce">
+    Phản hồi của bạn đã được gửi. Chúng tôi sẽ trả lời sớm nhất. Xin cảm ơn.
+</div>
+
 <p>
   Để không ngừng nâng cao chất lượng dịch vụ và đáp ứng tốt hơn nữa các yêu cầu của mọi người, chúng tôi mong muốn
   nhận được các thông tin phản hồi. Nếu Quý khách có bất kỳ thắc mắc hoặc đóng góp nào, xin vui lòng liên hệ với chúng
@@ -45,42 +49,11 @@
         </div>
       </div>
 
-      <div class="text-center text-md-left">
+      <div class="text-center text-md-left pull-right">
         <button class="btn indigo" type="submit">
-          Gửi phản hồi
+          <i class="fas fa-paper-plane"></i> Gửi phản hồi
         </button>
       </div>
     </form>
-
-    <div class="contact-info">
-      <div>
-        <i class="fas fa-home mt-4 fa-2x"></i>
-        <p>0888 210 861</p>
-      </div>
-
-      <div>
-        <i class="fas fa-phone mt-4 fa-2x"></i>
-        <p>0888 210 861</p>
-      </div>
-
-      <div>
-        <i class="fas fa-envelope mt-4 fa-2x"></i>
-        <p>honguyentai.thuongtho@gmail.com</p>
-      </div>
-    </div>
-
-
-
   </div>
 </div>
-<!-- 
-<form id="myform" method="post" (ngSubmit)="onSubmit()">
-  <label>from_name</label>
-  <input type="text" name="from_name" />
-  <label>message_html</label>
-  <input type="text" name="message_html" />
-  <br><br>
-  <button>
-    Send
-  </button>
-</form> -->
