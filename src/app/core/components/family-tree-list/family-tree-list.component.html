@@ -12,7 +12,21 @@
   </div>
 </div>
 
-<ul class="timeline">
+<mat-card *ngFor="let item of familyListData">
+  <mat-card-header>
+    <mat-card-title>{{item.name}} </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{item.basicInformation}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a routerLink="{{item.link}}">Xem chi tiết</a>
+  </mat-card-actions>
+</mat-card>
+
+<!-- <ul class="timeline">
   <li *ngFor="let item of familyListData; let i = index" [class.timeline-inverted]="i%2 ===0">
     <div class="timeline-badge"><i class="{{item.icon}}"></i></div>
     <div class="timeline-panel z-depth-1">
@@ -28,4 +42,4 @@
       </div>
     </div>
   </li>
-</ul>
+</ul> -->

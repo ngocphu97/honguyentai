@@ -1,25 +1,16 @@
-<input type="text" #search>
-<button (click)="onSearch(search.value)">Tim</button>
-
-<ng-container *ngIf="searchArray !== null">
-  <ul>
-    <li *ngFor="let item of searchArray">
-      {{item}}
-    </li>
-  </ul>
-
-  <ng-container *ngIf="searchArray.length === 0 && searchKey !== ''">
-    Không có nội dung cần tìm
-  </ng-container>
-
-  <ng-container *ngIf="searchKey === ''">
-    Chưa nhập nội dung tìm
-  </ng-container>
-
-</ng-container>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input type="text" #searchKey placeholder="Tìm kiếm" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" (click)="onSearch(option.id)" [value]="option.title">
+        {{option.title}} 
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
 
 
-<div class="right-side-nav">
+<div class="right-side-nav">  
   <ul>
     <hr class="hr-text" data-content="Tin gần đây">
     <li *ngFor="let i of news" class="text-center">

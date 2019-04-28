@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 
 import { TreeService } from '../../components/service/tree.service';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-right-side',
@@ -12,10 +15,11 @@ export class RightSideComponent implements OnInit {
 
   slideImages = [];
   news = [];
-  searchArray: Array<any> = null;
-  searchKey = '';
+  myControl = new FormControl();
+  options = [];
+  filteredOptions: Observable<string[]>;
 
-  constructor(private service: TreeService) { }
+  constructor(private service: TreeService, private router: Router) { }
 
   ngOnInit() {
     this.getNews();
@@ -26,13 +30,12 @@ export class RightSideComponent implements OnInit {
     let newsArray = [];
     this.service.getNews().pipe(
       map((data) => {
-        console.log(data);
         const obj = Object.values(data);
         newsArray = Object.values(obj[0]);
         return newsArray;
       })
     ).subscribe(val => {
-      console.log(val);
+      this.generateSearchOptions(val);
       val.forEach(element => {
         const n = {
           id: element.id,
@@ -45,6 +48,30 @@ export class RightSideComponent implements OnInit {
     }, () => {
       this.news = [];
     });
+  }
+
+  generateSearchOptions(searchOptionArray) {
+
+    this.options = searchOptionArray.map(option => {
+      return {
+        id: option.id,
+        title: option.title
+      };
+    });
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.filterOption(value))
+    );
+
+  }
+
+  filterOption(value: string) {
+    return this.options.filter(option => option.title.toLowerCase().includes(value));
+  }
+
+  onSearch(id) {
+    this.router.navigate([`/chinguyentai/tin-tuc/${id}`]);
   }
 
   getImage() {
@@ -75,12 +102,5 @@ export class RightSideComponent implements OnInit {
     return this.slideImages;
   }
 
-  onSearch(key) {
-    this.searchKey = key;
-    this.searchArray = [];
-    if (this.searchKey === '') {
-      return;
-    }
-    this.searchArray = this.news.map(x => x.title.toLowerCase()).filter(title => title.includes(this.searchKey));
-  }
+
 }

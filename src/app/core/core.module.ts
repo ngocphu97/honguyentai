@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatAutocompleteModule, MatInputModule, MatFormFieldModule, MatCardModule } from '@angular/material';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -20,9 +23,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { routes } from './core.routing';
 import { containers } from './containers';
 import { components } from './components';
-import { environment } from 'src/environments/environment';
 
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+export const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
 
@@ -33,7 +35,7 @@ const firebase = {
   projectId: 'honguyentai-f9d56',
   storageBucket: 'honguyentai-f9d56.appspot.com',
   messagingSenderId: '225000788937'
-}
+};
 
 @NgModule({
   imports: [
@@ -43,6 +45,13 @@ const firebase = {
     FormsModule,
     HttpClientModule,
 
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatAutocompleteModule,
+
+    ReactiveFormsModule,
     CKEditorModule,
     NgxPaginationModule,
     AngularFileUploaderModule,
