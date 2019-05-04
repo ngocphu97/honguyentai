@@ -1,208 +1,71 @@
-.timeline {
-  list-style: none;
-  padding: 1rem;
-  position: relative;
-  max-height: 850px;
-  overflow: auto;
+.social-btns .btn,
+.social-btns .btn:before,
+.social-btns .btn .fa {
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
 }
 
-.timeline:before {
-  top: 0;
-  bottom: 0;
-  position: absolute;
-  content: " ";
-  width: 3px;
-  background-color: #DF3409;
-  left: 50%;
-  margin-left: -1.5px;
+.social-btns .btn:before {
+  top: 90%;
+  left: -110%;
 }
 
-.timeline>li {
-  margin-bottom: 20px;
-  position: relative;
+.social-btns .btn .fa {
+  transform: scale(0.8);
 }
 
-.timeline>li:before,
-.timeline>li:after {
-  content: " ";
-  display: table;
+.social-btns .btn.google:before {
+  background: url("https://ngotoc.vn/themes/ngotoc/images/partern-danhmuc.jpg");
 }
 
-.timeline>li:after {
-  clear: both;
-}
-
-.timeline>li:before,
-.timeline>li:after {
-  content: " ";
-  display: table;
-}
-
-.timeline>li:after {
-  clear: both;
-}
-
-.timeline>li>.timeline-panel {
-  width: 42%;
-  float: left;
-  border: 1px solid #d4d4d4;
-  border-radius: 2px;
-  padding: 20px;
-  position: relative;
-}
-
-.timeline>li>.timeline-panel:before {
-  position: absolute;
-  top: 26px;
-  right: -15px;
-  display: inline-block;
-  border-top: 15px solid transparent;
-  border-left: 15px solid #ccc;
-  border-right: 0 solid #ccc;
-  border-bottom: 15px solid transparent;
-  content: " ";
-}
-
-.timeline>li>.timeline-panel:after {
-  position: absolute;
-  top: 27px;
-  right: -14px;
-  display: inline-block;
-  border-top: 14px solid transparent;
-  border-left: 14px solid #fff;
-  border-right: 0 solid #fff;
-  border-bottom: 14px solid transparent;
-  content: " ";
-}
-
-.timeline>li>.timeline-badge {
+.social-btns .btn.google .fa {
   color: #fff;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 1.4em;
+}
+
+.social-btns .btn:focus:before,
+.social-btns .btn:hover:before {
+  top: -10%;
+  left: -10%;
+}
+
+.social-btns .btn:focus .fa,
+.social-btns .btn:hover .fa {
+  color: #DF3409;
+  transform: scale(1);
+}
+
+.social-btns {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.social-btns .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-image: url("https://ngotoc.vn/themes/ngotoc/images/partern-danhmuc.jpg");
+  width: 250px;
+  height: 100px;
+  line-height: 90px;
   text-align: center;
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  margin-left: -25px;
-  background-color: #999999;
-  z-index: 100;
-  border-top-right-radius: 50%;
-  border-top-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-  border-bottom-left-radius: 50%;
-}
-
-.timeline>li.timeline-inverted>.timeline-panel {
-  float: right;
-}
-
-.timeline>li.timeline-inverted>.timeline-panel:before {
-  border-left-width: 0;
-  border-right-width: 15px;
-  left: -15px;
-  right: auto;
-}
-
-.timeline>li.timeline-inverted>.timeline-panel:after {
-  border-left-width: 0;
-  border-right-width: 14px;
-  left: -14px;
-  right: auto;
-}
-
-.timeline-badge.primary {
-  background-color: #2e6da4 !important;
-}
-
-.timeline-badge.success {
-  background-color: #3f903f !important;
-}
-
-.timeline-badge.warning {
-  background-color: #f0ad4e !important;
-}
-
-.timeline-badge.danger {
-  background-color: #d9534f !important;
-}
-
-.timeline-badge.info {
-  background-color: #5bc0de !important;
-}
-
-.timeline-title {
-  margin-top: 0;
-  color: inherit;
-}
-
-.timeline-body>p,
-.timeline-body>ul {
-  margin-bottom: 0;
-}
-
-.timeline-body>p+p {
-  margin-top: 5px;
-}
-
-@media (max-width: 767px) {
-  ul.timeline:before {
-    left: 40px;
-  }
-
-  ul.timeline>li>.timeline-panel {
-    width: calc(100% - 90px);
-    width: -moz-calc(100% - 90px);
-    width: -webkit-calc(100% - 90px);
-  }
-
-  ul.timeline>li>.timeline-badge {
-    left: 15px;
-    margin-left: 0;
-    top: 16px;
-  }
-
-  ul.timeline>li>.timeline-panel {
-    float: right;
-  }
-
-  ul.timeline>li>.timeline-panel:before {
-    border-left-width: 0;
-    border-right-width: 15px;
-    left: -15px;
-    right: auto;
-  }
-
-  ul.timeline>li>.timeline-panel:after {
-    border-left-width: 0;
-    border-right-width: 14px;
-    left: -14px;
-    right: auto;
-  }
-}
-
-i {
-  font-size: smaller;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-  height: 15px;
+  position: relative;
+  overflow: hidden;
   border-radius: 5px;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  opacity: 0.99;
+  background-image: url("https://previews.123rf.com/images/irbisnariel/irbisnariel1702/irbisnariel170200002/75888407-playful-asian-dragon-and-fire-pattern.jpg");
+  background-size: cover;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.social-btns .btn:before {
+  content: '';
+  width: 145%;
+  height: 180%;
+  position: absolute;
+  transform: rotate(45deg);
 }
 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.social-btns .btn .fa {
+  font-size: 1.25rem;
+  vertical-align: middle;
 }

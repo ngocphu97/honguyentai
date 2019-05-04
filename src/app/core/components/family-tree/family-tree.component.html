@@ -1,11 +1,15 @@
-<div *ngIf="familyData.dataTable.length === 0">
-  Đang lấy dữ liệu ...
+<div *ngIf="announce">
+  Hiện tại chưa có dữ liệu
 </div>
 
+<div *ngIf="!announce && familyData.dataTable.length === 0">
+  Đang lấy dữ liệu ...
+</div>
 
 <div class="family-chart" *ngIf="familyData.dataTable.length > 0">
   <google-chart #familyOrgChart [data]="familyData" (chartSelect)="onSelect($event)"></google-chart>
 </div>
+
 
 <button type="button" mdbBtn color="indigo" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
   Thêm thành viên
@@ -71,21 +75,39 @@
 <br>
 Thêm <br>
 <input type="text" [(ngModel)]="parentNodeName" #inputNewNodeName>
-<button (click)="addNode(inputNewNodeName.value)">them</button>
+<button (click)="addNode(inputNewNodeName.value)">Thêm vào node đang chọn</button>
+<hr>
 <br>
-Sửa <br>
-<!-- <input type="text" placeholder="..." value="{{name}}" #edit>
-<button (click)="editNode(edit.value)">edit</button> -->
+Sửa node đang chọn
+<input type="text" placeholder="Sửa node đang chọn" value="{{name}}" #edit>
+<button (click)="editNode(edit.value)">edit</button>
+<hr>
 <br>
-Lưu lại mọi thứ
-<button (click)="addData()">Lưu</button>
+<input type="text" #firstNode placeholder="Sửa node đầu">
+<button (click)="editFirstNode(firstNode.value)">editFirstNode</button>
+<hr>
 <br>
-Xóa thành viên đang chọn
-<button (click)="deleteNode()">Xóa</button>
-<br>
-xóa cây <br>
-<button (click)="delTree()">Xóa cây</button>
+<input type="text" #secondNode placeholder="Thêm vào node dầu">
+<button (click)="addToFirstNode(secondNode.value)">Thêm vào node đầu</button>
+<hr>
+<div>
 
-<br>
-Get cai value tu selectedNode
-<button (click)="getValueFromSelectedNode()">get vlue</button>
+  <br>
+  <button (click)="initFakeData(firstNode.value)">Thêm dữ liệu đầu tiên</button>
+
+  <br>
+  Lưu lại mọi thứ
+  <button (click)="addData()">Lưu</button>
+
+  <br>
+  Xóa thành viên đang chọn
+  <button (click)="deleteNode()">Xóa</button>
+
+  <br>
+  xóa cây
+  <button (click)="delTree()">Xóa cây</button>
+
+</div>
+
+<button (click)="openAsPNG()">Open as image</button>
+

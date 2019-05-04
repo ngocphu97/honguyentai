@@ -16,11 +16,14 @@ export class FamilyTreeComponent implements OnInit {
 
   @ViewChild('familyOrgChart') familyOrgChart;
 
+  toJsonString = '';
+
   parent: string;
 
   parentNodeName: string;
   selectedNode: any;
   orgChartCollapsed = false;
+  announce: any;
 
   familyDataTable: Array<any> = [];
 
@@ -29,7 +32,8 @@ export class FamilyTreeComponent implements OnInit {
     dataTable: this.familyDataTable,
     options: {
       allowHtml: true,
-      allowCollapse: true
+      allowCollapse: true,
+      width: '400',
     }
   };
 
@@ -45,15 +49,22 @@ export class FamilyTreeComponent implements OnInit {
 
   getData() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.service.getTreeData(id).subscribe((res: any) => {
-      console.log(res);
-      this.familyDataTable = res.result;
-      this.familyData.dataTable = this.familyDataTable;
-    });
+    this.service.getTreeData(id)
+      .subscribe((res: any) => {
+        if (res.result === null) {
+          this.initFakeData();
+          return this.announce = res;
+        }
+        this.familyDataTable = res.result;
+        console.log(this.familyDataTable);
+        this.familyData.dataTable = this.familyDataTable;
+      }, (err) => {
+        console.log(err);
+      }
+      );
   }
 
   onSelect(e: ChartSelectEvent) {
-    console.log(e);
     this.parent = e.selectedRowValues[0];
     this.selectedNode = e;
     this.parentNodeName = this.selectedNode.selectedRowValues[0];
@@ -77,6 +88,8 @@ export class FamilyTreeComponent implements OnInit {
         }, editNodeParent, 'VP'
       ]
     ];
+
+    console.log(nodeTable);
 
     this.familyData.component.draw();
   }
@@ -135,7 +148,7 @@ export class FamilyTreeComponent implements OnInit {
   }
 
   addData() {
-    const id = 'b37291df-5958-49e7-8133-c70e46448ba4';
+    const id = this.route.snapshot.paramMap.get('id');
     this.service.postTreeData(id, this.familyDataTable).subscribe(res => console.log(res));
   }
 
@@ -146,5 +159,138 @@ export class FamilyTreeComponent implements OnInit {
 
   getValueFromSelectedNode() {
     const seletedNode = this.familyDataTable.filter(x => x[1] === this.selectedNode.selectedRowValues[0]);
+  }
+
+  editFirstNode(newValue) {
+    const editNodeIndex = 0;
+    const firstNode = this.familyData.dataTable[0];
+    this.findRelativeNode(firstNode[0].v, newValue);
+
+    const nodeTable = [
+      ...this.familyData.dataTable,
+      this.familyData.dataTable[editNodeIndex] = [
+        {
+          v: newValue,
+          f: `${newValue} <br> <strong class="text-white">Chi tiết</strong>`,
+          id: '2',
+        }, '', 'VP'
+      ]
+    ];
+
+    this.familyData.component.draw();
+  }
+
+  addToFirstNode(newNodeName) {
+    console.log(newNodeName);
+    const firstNode = this.familyData.dataTable[0];
+    const addNode = [
+      {
+        v: newNodeName,
+        f: `${newNodeName} <br> <strong class="text-white my-class">Chi tiết</strong>`,
+        id: 'newId'
+      }, firstNode[0].v, ''
+    ];
+    this.familyDataTable.push(addNode);
+    this.familyData.component.draw();
+  }
+
+
+  initFakeData() {
+    this.familyDataTable = [
+      [
+        {
+          'f': 'Nguyễn Tài Huyền <br> <strong class="text-white">Chi tiết</strong>',
+          'id': '2',
+          'v': 'Nguyễn Tài Huyền'
+        },
+        '',
+        'VP'
+      ],
+      [
+        {
+          'f': 'Nguyễn Tài Viên <br> <strong class="text-white">Chi tiết</strong>',
+          'id': '2',
+          'v': 'Nguyễn Tài Viên'
+        },
+        'Nguyễn Tài Huyền',
+        'VP'
+      ],
+      [
+        {
+          'f': 'Nguyễn Tài Hiềng <br> <strong class="text-white">Chi tiết</strong>',
+          'id': '2',
+          'v': 'Nguyễn Tài Hiềng'
+        },
+        'Nguyễn Tài Viên',
+        'VP'
+      ],
+      [
+        {
+          'f': 'Nguyễn Tài Hùng <br> <strong class="text-white">Chi tiết</strong>',
+          'id': '2',
+          'v': 'Nguyễn Tài Hùng'
+        },
+        'Nguyễn Tài Hiềng',
+        'VP'
+      ],
+      [
+        {
+          'f': 'Nguyễn Tài Tý <br> <strong class="text-white">Chi tiết</strong>',
+          'id': '2',
+          'v': 'Nguyễn Tài Tý'
+        },
+        'Nguyễn Tài Hùng',
+        'VP'
+      ],
+      [
+        {
+          'f': 'Nguyễn Tài Mùi <br> <strong class="text-white my-class">Chi tiết</strong>',
+          'id': 'newId',
+          'v': 'Nguyễn Tài Mùi'
+        },
+        'Nguyễn Tài Hiềng',
+        ''
+      ],
+      [
+        {
+          'f': 'Nguyễn Tài Kỳ <br> <strong class="text-white my-class">Chi tiết</strong>',
+          'id': 'newId',
+          'v': 'Nguyễn Tài Kỳ'
+        },
+        'Nguyễn Tài Hiềng',
+        ''
+      ],
+      [
+        {
+          'f': 'Nguyễn Tài Hảo <br> <strong class="text-white my-class">Chi tiết</strong>',
+          'id': 'newId',
+          'v': 'Nguyễn Tài Hảo'
+        },
+        'Nguyễn Tài Mùi',
+        ''
+      ],
+      [
+        {
+          'f': 'Nguyễn Tài Định <br> <strong class="text-white my-class">Chi tiết</strong>',
+          'id': 'newId',
+          'v': 'Nguyễn Tài Định'
+        },
+        'Nguyễn Tài Mùi',
+        ''
+      ],
+      [
+        {
+          'f': 'Nguyễn Tài Đại <br> <strong class="text-white my-class">Chi tiết</strong>',
+          'id': 'newId',
+          'v': 'Nguyễn Tài Đại'
+        },
+        'Nguyễn Tài Kỳ',
+        ''
+      ]
+    ];
+
+    this.familyData.dataTable = this.familyDataTable;
+
+    this.familyData.component.draw();
   }
 }
