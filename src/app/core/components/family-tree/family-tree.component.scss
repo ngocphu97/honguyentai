@@ -1,60 +1,16 @@
-:host::ng-deep {
-  table {
-    border-collapse: inherit;
-
-    .google-visualization-orgchart-node {
-      text-align: center;
-      vertical-align: middle;
-      font-family: arial, helvetica;
-      cursor: default;
-      border: 1px solid red;
-      background-color: #ee9617;
-      background-image: linear-gradient(180deg, #ee9617 0%, #fe5858 74%);
-      color: #ffffff;
-      cursor: pointer;
-      transition: transform .2s;
-
-      &.google-visualization-orgchart-nodesel {
-        background-color: #42378f;
-        background-image: linear-gradient(180deg, #42378f 0%, #f53844 74%);
-      }
-
-      &:hover {
-        background-color: #fc9842;
-        background-image: linear-gradient(180deg, #fc9842 0%, #fe5f75 74%);
-        transform: scale(1.2)
-      }
-    }
-  }
-
-  .my-class {
-    &:hover {
-      cursor: pointer;
-      background-color: yellow;
-    }
-  }
+#familyTree {
+  width: 100%;
+  height: 650px;
 }
 
-.family-chart {
+.family-container {
+  height: 400px;
   overflow: auto;
-  max-height: 850px;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
+tr:hover {
+  cursor: pointer;
+  background-color: #ee9617;
+  background-image: linear-gradient(180deg, #ee9617 0%, #fe5858 74%);
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}

@@ -5,9 +5,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatAutocompleteModule, MatInputModule, MatFormFieldModule, MatCardModule } from '@angular/material';
+import {
+  MatAutocompleteModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatCardModule,
+  MatTableModule,
+  MatPaginatorModule
+} from '@angular/material';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md'
+
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -41,6 +50,7 @@ const firebase = {
   imports: [
     CommonModule,
     MDBBootstrapModule.forRoot(),
+    InputsModule, WavesModule, ButtonsModule,
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
     FormsModule,
     HttpClientModule,
@@ -50,6 +60,8 @@ const firebase = {
     MatFormFieldModule,
     MatCardModule,
     MatAutocompleteModule,
+    MatTableModule,
+    MatPaginatorModule,
 
     ReactiveFormsModule,
     CKEditorModule,

@@ -1,113 +1,36 @@
-<div *ngIf="announce">
-  Hiện tại chưa có dữ liệu
+<button class="btn indigo" (click)="update()">Lưu lại </button>
+
+<div *ngIf="announce === null" class="alert alert-primary" role="alert">
+  Hiện tại chưa có thành viên. Hãy thêm thành viên mới
 </div>
 
-<div *ngIf="!announce && familyData.dataTable.length === 0">
-  Đang lấy dữ liệu ...
-</div>
+<div id="familyTree"></div>
 
-<div class="family-chart" *ngIf="familyData.dataTable.length > 0">
-  <google-chart #familyOrgChart [data]="familyData" (chartSelect)="onSelect($event)"></google-chart>
-</div>
-
-
-<button type="button" mdbBtn color="indigo" class="relative waves-light" (click)="basicModal.show()" mdbWavesEffect>
-  Thêm thành viên
-</button>
-
-<div mdbModal #basicModal="mdbModal" [config]='{backdrop: false, ignoreBackdropClick: true}' class="modal fade top"
-  tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-side modal-top-right" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close pull-right" aria-label="Close" (click)="basicModal.hide()">
-          <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title w-100" id="myModalLabel">Thêm thành viên mới</h4>
-      </div>
-      <div class="modal-body">
-        <p>
-          Thành viên đang được chọn: <strong>{{parentNodeName}}</strong>
-        </p>
-
-        <p>
-          <strong>Nhập chi tiết thành viên mới</strong>
-        </p>
-
-        <label for="newName">Họ và tên</label>
-        <input type="text" class="form-control" id="newName" #inputNewNodeName>
-
-        <label for="newBirthDay">Ngày sinh</label>
-        <input type="text" class="form-control" id="newBirthDay" #inputNewNodeName>
-
-        <label for="newName">Họ và tên</label>
-        <input type="text" class="form-control" id="newName" #inputNewNodeName>
-
-        <button class="btn btn-sm indigo pull-right mt-3" (click)="addNode(inputNewNodeName.value)">Lưu lại</button>
-        <!-- <app-tree-form [parent]="name"></app-tree-form> -->
-      </div>
-    </div>
+<!-- <div class="card-header text-center">
+  <div class="card">
+    Danh sách thành viên
   </div>
-</div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngFor="let item of data" attr.id="component_{{item.id}}">
+      {{item.name}}
+    </li>
+  </ul>
+</div> -->
 
+<div *ngIf="arrayData && arrayData.length > 0" class="family-container w-100 mat-elevation-z8">
+  <table mat-table [dataSource]="arrayData" class="w-100">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Tên </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
 
-<button type="button" mdbBtn color="indigo" class="relative waves-light" (click)="detailModal.show()" mdbWavesEffect>
-  Xem chi tiết
-</button>
+    <ng-container matColumnDef="parent">
+      <th mat-header-cell *matHeaderCellDef> Tên Cha Mẹ </th>
+      <td mat-cell *matCellDef="let element"> {{element.parent}} </td>
+    </ng-container>
 
-<div mdbModal #detailModal="mdbModal" [config]='{backdrop: false, ignoreBackdropClick: true}' class="modal fade top"
-  tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-side modal-top-right" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close pull-right" aria-label="Close" (click)="detailModal.hide()">
-          <span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title w-100" id="myModalLabel">Chi tiết</h4>
-      </div>
-      <div class="modal-body">
-        <app-member-detail></app-member-detail>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br>
-Thêm <br>
-<input type="text" [(ngModel)]="parentNodeName" #inputNewNodeName>
-<button (click)="addNode(inputNewNodeName.value)">Thêm vào node đang chọn</button>
-<hr>
-<br>
-Sửa node đang chọn
-<input type="text" placeholder="Sửa node đang chọn" value="{{name}}" #edit>
-<button (click)="editNode(edit.value)">edit</button>
-<hr>
-<br>
-<input type="text" #firstNode placeholder="Sửa node đầu">
-<button (click)="editFirstNode(firstNode.value)">editFirstNode</button>
-<hr>
-<br>
-<input type="text" #secondNode placeholder="Thêm vào node dầu">
-<button (click)="addToFirstNode(secondNode.value)">Thêm vào node đầu</button>
-<hr>
-<div>
-
-  <br>
-  <button (click)="initFakeData(firstNode.value)">Thêm dữ liệu đầu tiên</button>
-
-  <br>
-  Lưu lại mọi thứ
-  <button (click)="addData()">Lưu</button>
-
-  <br>
-  Xóa thành viên đang chọn
-  <button (click)="deleteNode()">Xóa</button>
-
-  <br>
-  xóa cây
-  <button (click)="delTree()">Xóa cây</button>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 
 </div>
-
-<button (click)="openAsPNG()">Open as image</button>
-
