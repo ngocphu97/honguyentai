@@ -60,8 +60,7 @@ export class FamilyTreeComponent implements OnInit {
         this.familyData.dataTable = this.familyDataTable;
       }, (err) => {
         console.log(err);
-      }
-      );
+      });
   }
 
   onSelect(e: ChartSelectEvent) {
