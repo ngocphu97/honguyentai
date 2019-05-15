@@ -67,16 +67,6 @@ export class FamilyTreeComponent implements OnInit, AfterViewInit {
           return;
         }
         this.data = res.result;
-        // this.data = res.result.map((member: Array<any>, index: number) => {
-        //   return {
-        //     id: member[0].v,
-        //     pid: member[1],
-        //     name: member[0].v,
-        //     title: member[0].v,
-        //     img: ''
-        //   };
-        // });
-
         this.arrayData = res.result.map(member => {
           return {
             name: member.name,
@@ -96,6 +86,9 @@ export class FamilyTreeComponent implements OnInit, AfterViewInit {
       template: 'isla',
       enableDragDrop: false,
       enableSearch: true,
+      collapse: {
+        level: 4
+      },
       nodeMouseClick: OrgChart.action.edit,
       onUpdate: (sender, oldNode, newNode) => {
         const index = this.data.findIndex(x => x.id === oldNode.id);
@@ -133,6 +126,7 @@ export class FamilyTreeComponent implements OnInit, AfterViewInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.service.postTreeData(id, this.data).subscribe(res => console.log(res));
   }
+
 
 }
 

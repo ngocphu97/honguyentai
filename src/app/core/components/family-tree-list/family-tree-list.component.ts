@@ -24,6 +24,7 @@ export class FamilyTreeListComponent implements OnInit {
 
   getFamilyListData() {
     this.familyService.getFamilyListData().subscribe((res: any) => {
+      console.log(res);
       const result = Object.keys(res.result).map((key) => {
         return res.result[key];
       });

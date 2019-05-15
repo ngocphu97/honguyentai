@@ -114,8 +114,9 @@ export class TreeService {
     return this.http.get(this.url + '/familyTreeList');
   }
 
-  delTree(id) {
-    return this.http.delete(this.url + '/familyTreeData/' + id);
+  delTree() {
+    const id = 'undefined';
+    return this.http.delete(this.url + '/familyTreeList/' + id);
   }
 
   updateFamilyListData(updateFamilyData, id) {
