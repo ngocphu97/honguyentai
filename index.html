@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>GIA PHẢ CHI NGUYỄN TÀI</title>
+  <base href="https://ngocphu97.github.io/honguyentai/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"">
+  <!-- <link rel=" icon" type="image/x-icon" href="favicon.ico"> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Gochi+Hand" rel="stylesheet">
+
+  <link rel=" icon" type="image/png" href="https://img.icons8.com/color/48/000000/family.png">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+    integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="node_modules/ng2-org-chart/styles.css">
+
+
+  <script src="/assets/js/raphael.js"></script>
+  <script src="/assets/js/Treant.js"></script>
+
+  <script src="https://cdn.ckeditor.com/4.7.1/full/ckeditor.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+
+  <script>
+    var config = {
+      apiKey: 'AIzaSyAvlLi1q6qiUbEsPrs56WnAmD606XldNZ0',
+      authDomain: 'gudjob-upload-ph-1550280943491.firebaseapp.com',
+      databaseURL: 'https://gudjob-upload-ph-1550280943491.firebaseio.com',
+      projectId: 'gudjob-upload-ph-1550280943491',
+      storageBucket: 'gudjob-upload-ph-1550280943491.appspot.com',
+      messagingSenderId: '254512250541'
+    };
+    firebase.initializeApp(config);
+
+  </script>
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOLJJ4zhCryFgb-r5MvGURET3sX894NRc"
+    type="text/javascript"></script>
+
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['table', 'map', 'corechart'],
+      'mapsApiKey': 'AIzaSyCOLJJ4zhCryFgb-r5MvGURET3sX894NRc'
+    });
+    google.charts.setOnLoadCallback(initialize);
+
+    function initialize() {
+      var query = new google.visualization.Query('https://spreadsheets.google.com/pub?key=pCQbetd-CptF0r8qmCOlZGg');
+      query.send(draw);
+      director = new google.maps.DirectionsService();
+    }
+
+    function draw(response) {
+      if (response.isError()) {
+        alert('Error in query');
+      }
+
+      var geoData = google.visualization.arrayToDataTable([
+        ['Lat', 'Lon', 'Vị trí'],
+        [20.815868, 106.089038, 'Dương A Nam Định'],
+        [21.116236, 105.958130, 'Đông Ngàn Bắc Ninh'],
+      ]);
+
+      var geoView = new google.visualization.DataView(geoData);
+      geoView.setColumns([0, 1]);
+
+      var table = new google.visualization.Table(document.getElementById('table_div'));
+
+      table.draw(geoData, {
+        showRowNumber: false,
+        width: '100%',
+        height: '100%'
+      });
+
+      var options = {
+        mapType: 'styledMap',
+        zoomLevel: 10,
+        showTooltip: true,
+        showInfoWindow: true,
+        showLine: true,
+        maps: {
+          styledMap: {
+            name: 'Địa Đồ',
+            styles: [{
+                featureType: 'poi.attraction',
+                stylers: [{
+                  color: '#fce8b2'
+                }]
+              },
+              {
+                featureType: 'road.highway',
+                stylers: [{
+                  hue: '#0277bd'
+                }, {
+                  saturation: 0
+                }]
+              },
+              {
+                featureType: 'road.highway',
+                elementType: 'labels.icon',
+                stylers: [{
+                  hue: '#000'
+                }, {
+                  saturation: 100
+                }, {
+                  lightness: 0
+                }]
+              },
+              {
+                featureType: 'landscape',
+                stylers: [{
+                  hue: '#259b24'
+                }, {
+                  saturation: 10
+                }, {
+                  lightness: 0
+                }]
+              }
+            ]
+          }
+        }
+      };
+
+      var map = new google.visualization.Map(document.getElementById('map_div'));
+
+      map.draw(geoData, options);
+
+      google.visualization.events.addListener(table, 'select',
+        () => {
+          map.setSelection(table.getSelection());
+        });
+
+      google.visualization.events.addListener(map, 'select',
+        () => {
+          table.setSelection(map.getSelection());
+        });
+    }
+
+  </script>
+
+<link rel="stylesheet" href="styles.5370d9cdc142f41d92c6.css"></head>
+
+<body>
+
+  <style>
+    .loader {
+      height: 100%;
+      width: 100%
+    }
+
+    .loader .l_main {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 172px;
+      height: 128px;
+      margin: 0;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%)
+    }
+
+    @media (max-width:550px) {
+      .loader {
+        -webkit-transform: scale(0.75);
+        transform: scale(0.75)
+      }
+    }
+
+    @media (max-width:440px) {
+      .loader {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5)
+      }
+    }
+
+    .l_square {
+      position: relative
+    }
+
+    .l_square:nth-child(1) {
+      margin-left: 0px
+    }
+
+    .l_square:nth-child(2) {
+      margin-left: 44px
+    }
+
+    .l_square:nth-child(3) {
+      margin-left: 88px
+    }
+
+    .l_square:nth-child(4) {
+      margin-left: 132px
+    }
+
+    .l_square span {
+      position: absolute;
+      top: 0px;
+      left: 20px;
+      height: 36px;
+      width: 36px;
+      border-radius: 2px;
+      background-color: #FFFFFF
+    }
+
+    .l_square span:nth-child(1) {
+      top: 0px
+    }
+
+    .l_square span:nth-child(2) {
+      top: 44px
+    }
+
+    .l_square span:nth-child(3) {
+      top: 88px
+    }
+
+    .l_square:nth-child(1) span {
+      -webkit-animation: animsquare1 2s infinite ease-in;
+      animation: animsquare1 2s infinite ease-in
+    }
+
+    .l_square:nth-child(2) span {
+      -webkit-animation: animsquare2 2s infinite ease-in;
+      animation: animsquare2 2s infinite ease-in
+    }
+
+    .l_square:nth-child(3) span {
+      -webkit-animation: animsquare3 2s infinite ease-in;
+      animation: animsquare3 2s infinite ease-in
+    }
+
+    .l_square:nth-child(4) span {
+      -webkit-animation: animsquare4 2s infinite ease-in;
+      animation: animsquare4 2s infinite ease-in
+    }
+
+    .l_square span:nth-child(1) {
+      -webkit-animation-delay: 0.00s;
+      animation-delay: 0.00s
+    }
+
+    .l_square span:nth-child(2) {
+      -webkit-animation-delay: 0.15s;
+      animation-delay: 0.15s
+    }
+
+    .l_square span:nth-child(3) {
+      -webkit-animation-delay: 0.30s;
+      animation-delay: 0.30s
+    }
+
+    @-webkit-keyframes animsquare1 {
+
+      0%,
+      5%,
+      95%,
+      100% {
+        -webkit-transform: translate(0px, 0px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg)
+      }
+
+      30%,
+      70% {
+        -webkit-transform: translate(-40px, 0px) rotate(-90deg);
+        transform: translate(-40px, 0px) rotate(-90deg)
+      }
+    }
+
+    @keyframes animsquare1 {
+
+      0%,
+      5%,
+      95%,
+      100% {
+        -webkit-transform: translate(0px, 0px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg)
+      }
+
+      30%,
+      70% {
+        -webkit-transform: translate(-40px, 0px) rotate(-90deg);
+        transform: translate(-40px, 0px) rotate(-90deg)
+      }
+    }
+
+    @-webkit-keyframes animsquare2 {
+
+      0%,
+      10%,
+      90%,
+      100% {
+        -webkit-transform: translate(0px, 0px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg)
+      }
+
+      35%,
+      65% {
+        -webkit-transform: translate(-40px, 0px) rotate(-90deg);
+        transform: translate(-40px, 0px) rotate(-90deg)
+      }
+    }
+
+    @keyframes animsquare2 {
+
+      0%,
+      10%,
+      90%,
+      100% {
+        -webkit-transform: translate(0px, 0px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg)
+      }
+
+      35%,
+      65% {
+        -webkit-transform: translate(-40px, 0px) rotate(-90deg);
+        transform: translate(-40px, 0px) rotate(-90deg)
+      }
+    }
+
+    @-webkit-keyframes animsquare3 {
+
+      0%,
+      15%,
+      85%,
+      100% {
+        -webkit-transform: translate(0px, 0px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg)
+      }
+
+      40%,
+      60% {
+        -webkit-transform: translate(-40px, 0px) rotate(-90deg);
+        transform: translate(-40px, 0px) rotate(-90deg)
+      }
+    }
+
+    @keyframes animsquare3 {
+
+      0%,
+      15%,
+      85%,
+      100% {
+        -webkit-transform: translate(0px, 0px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg)
+      }
+
+      40%,
+      60% {
+        -webkit-transform: translate(-40px, 0px) rotate(-90deg);
+        transform: translate(-40px, 0px) rotate(-90deg)
+      }
+    }
+
+    @-webkit-keyframes animsquare4 {
+
+      0%,
+      20%,
+      80%,
+      100% {
+        -webkit-transform: translate(0px, 0px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg)
+      }
+
+      45%,
+      55% {
+        -webkit-transform: translate(-40px, 0px) rotate(-90deg);
+        transform: translate(-40px, 0px) rotate(-90deg)
+      }
+    }
+
+    @keyframes animsquare4 {
+
+      0%,
+      20%,
+      80%,
+      100% {
+        -webkit-transform: translate(0px, 0px) rotate(0deg);
+        transform: translate(0px, 0px) rotate(0deg)
+      }
+
+      45%,
+      55% {
+        -webkit-transform: translate(-40px, 0px) rotate(-90deg);
+        transform: translate(-40px, 0px) rotate(-90deg)
+      }
+    }
+
+  </style>
+
+  <app-root>
+    <div class="loader">
+      <div class="l_main">
+        <div class="l_square"><span></span><span></span><span></span></div>
+        <div class="l_square"><span></span><span></span><span></span></div>
+        <div class="l_square"><span></span><span></span><span></span></div>
+        <div class="l_square"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </app-root>
+
+  <div id="table_div" style="display: none"></div>
+  <div id="map_div" style="display: none"></div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+  </script>
+
+  <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+  <script type="text/javascript">
+    (() => {
+      emailjs.init("user_sRHy4wAHAQVGsGMJGq1tW");
+    })();
+
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+
+  <script src="https://balkangraph.com/js/latest/OrgChart.js"></script>
+
+<script type="text/javascript" src="runtime.420d20027f4a80a8dd79.js"></script><script type="text/javascript" src="polyfills.f6ae3e8b63939c618130.js"></script><script type="text/javascript" src="scripts.806effac119676237f10.js"></script><script type="text/javascript" src="main.3e70937c5fee40907e15.js"></script></body>
+
+</html>
