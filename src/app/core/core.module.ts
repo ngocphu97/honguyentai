@@ -27,6 +27,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { routes } from './core.routing';
@@ -66,6 +67,7 @@ const firebase = {
     ReactiveFormsModule,
     CKEditorModule,
     NgxPaginationModule,
+    NgxGalleryModule,
     AngularFileUploaderModule,
     Ng2GoogleChartsModule,
     PerfectScrollbarModule,

@@ -34,7 +34,15 @@
 
 </div>
 
-<div class="row popup">
+
+<div class="upload-process" *ngIf="uploadProcess === -1">
+  <div class="alert alert-danger" role="alert">
+    Đăng hình thất bại !
+  </div>
+  <br>
+</div>
+
+<!-- <div class="row popup">
   <div class="col-md-4" *ngFor="let img of images | paginate: { itemsPerPage: 9, currentPage: p }"
     style="margin-bottom: 15px;">
 
@@ -58,10 +66,10 @@
     </pagination-controls>
   </div>
 
-</div>
+</div> -->
 
-<div id="imagePreviewModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="imagePreview">
-  <div id="caption"></div>
+<div class="row">
+  <div class="col-md-12">
+    <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+  </div>
 </div>

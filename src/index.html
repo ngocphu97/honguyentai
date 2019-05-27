@@ -73,14 +73,6 @@
       var geoView = new google.visualization.DataView(geoData);
       geoView.setColumns([0, 1]);
 
-      var table = new google.visualization.Table(document.getElementById('table_div'));
-
-      table.draw(geoData, {
-        showRowNumber: false,
-        width: '100%',
-        height: '100%'
-      });
-
       var options = {
         mapType: 'styledMap',
         zoomLevel: 10,
@@ -393,6 +385,10 @@
         -webkit-transform: translate(-40px, 0px) rotate(-90deg);
         transform: translate(-40px, 0px) rotate(-90deg)
       }
+    }
+
+    #baguetteBox-overlay {
+      display: none;
     }
 
   </style>

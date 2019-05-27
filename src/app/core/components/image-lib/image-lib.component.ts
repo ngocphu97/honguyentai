@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TreeService } from '../service/tree.service';
 import { map } from 'rxjs/operators';
+
+import { TreeService } from '../service/tree.service';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+
 
 declare const firebase, baguetteBox: any;
 
@@ -15,8 +18,37 @@ export class ImageLibComponent implements OnInit {
   uploadProcess = 0;
   uploadImage = null;
   previewImage = null;
-
   storageRef = firebase.storage().ref();
+  defaultImageSource = 'https://www.wingstosoaronline.com/wp-content/themes/wingstosoar/images/default_post.jpg';
+
+
+  galleryOptions = [
+    {
+      width: '100%',
+      height: '400px',
+      thumbnailsColumns: 4,
+      imageAnimation: NgxGalleryAnimation.Slide
+    },
+    // max-width 800
+    {
+      breakpoint: 800,
+      width: '100%',
+      height: '600px',
+      imagePercent: 60,
+      thumbnailsPercent: 20,
+      thumbnailsMargin: 20,
+      thumbnailMargin: 20
+    },
+    // max-width 400
+    {
+      breakpoint: 400,
+      preview: false
+    }
+  ];
+
+  galleryImages = [
+  ];
+
 
   constructor(private service: TreeService) { }
 
@@ -26,26 +58,26 @@ export class ImageLibComponent implements OnInit {
   }
 
   getImage() {
-    let newsArray = [];
-    this.service.getImage().pipe(
-      map((data) => {
-        const obj = Object.values(data);
-        newsArray = Object.values(obj[0]);
-        return newsArray;
-      })
-    ).subscribe(val => {
-      val.forEach(element => {
-        if (!element.src) {
-          element.src = 'https://www.wingstosoaronline.com/wp-content/themes/wingstosoar/images/default_post.jpg';
-        }
-        const n = {
-          id: element.id,
-          src: element.src,
-          date: element.date
-        };
-        this.images.push(n);
+    this.service.getImage()
+      .pipe(
+        map((data) => {
+          return Object.values(Object.values(data)[0]);
+        }))
+      .subscribe((images: Array<any>) => {
+        images.forEach(image => {
+          if (!image.src) {
+            image.src = this.defaultImageSource;
+          }
+
+          this.galleryImages.push({
+            small: image.src,
+            medium: image.src,
+            big: image.src
+          });
+
+          this.images.push(image);
+        });
       });
-    });
   }
 
   onSelectImg(src) {
@@ -74,6 +106,11 @@ export class ImageLibComponent implements OnInit {
     const src = url;
     this.service.postImage(id, src).subscribe((data) => {
       if (data.ok) {
+        this.images.push({
+          id: 'previewId',
+          date: new Date(),
+          src: url
+        });
         return data.ok;
       }
     }, (error) => {
@@ -89,11 +126,9 @@ export class ImageLibComponent implements OnInit {
       this.previewImage = reader.result;
     };
     reader.readAsDataURL(image.target.files[0]);
-
   }
 
   uploadImageToFirebase() {
-
     const metadata = {
       contentType: 'image/jpeg'
     };
@@ -109,15 +144,6 @@ export class ImageLibComponent implements OnInit {
     });
   }
 
-  deleteImageFromFirebase() {
-    const desertRef = this.storageRef.child('renamed-mountains.jpg');
-
-    desertRef.delete().then((res) => {
-      // console.log(res);
-      return res;
-    });
-  }
-
   catchUploadProcess(snapshot): number {
     return this.uploadProcess = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
   }
@@ -125,12 +151,17 @@ export class ImageLibComponent implements OnInit {
   catchUploadError(error: any) {
     switch (error.code) {
       case 'storage/unauthorized':
+        alert('storage/unauthorized');
+        this.uploadProcess = -1;
         break;
       case 'storage/canceled':
+        alert('storage/canceled');
+        this.uploadProcess = -1;
         break;
       case 'storage/unknown':
+        alert('storage/unknown');
+        this.uploadProcess = -1;
         break;
     }
   }
-
 }
