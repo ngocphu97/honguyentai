@@ -4,13 +4,11 @@
 
 <div>
 
-  <h2 class="text-center">
-    {{newsTitle}}
-  </h2>
+  <h3 class="text-center"> {{newsTitle}} </h3>
 
   <div class="news-infomation">
-    <small>{{newsDate | date:"short"}}</small>
-    <button class="btn btn-primary btn-sm indigo" mdbTooltip="Chỉnh sửa" placement="bottom" (click)="toogleEditMode()">
+    <small>Cập nhật lúc: {{newsDate | date:"short"}}</small>
+    <button class="btn btn-sm indigo" mdbTooltip="Chỉnh sửa" placement="bottom" (click)="toogleEditMode()">
       <i class="fa fa-pencil"></i>
     </button>
   </div>
@@ -19,8 +17,11 @@
     <img src="{{newsImage}}" class="img-fluid" alt="">
   </div>
 
-  <p id="newsText">
-  </p>
+  <perfect-scrollbar style="max-height: 850px;">
+    <p class="m-3" id="newsText">
+    </p>
+  </perfect-scrollbar>
+
 
   <div *ngIf="readMode === false">
     <form #newsForm="ngForm" (ngSubmit)="onSubmit()">

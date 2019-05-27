@@ -3,18 +3,18 @@
     <input type="text" #searchKey placeholder="Tìm kiếm" matInput [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredOptions | async" (click)="onSearch(option.id)" [value]="option.title">
-        {{option.title}} 
+        {{option.title}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
 </form>
 
 
-<div class="right-side-nav">  
+<div class="right-side-nav">
   <ul>
     <hr class="hr-text" data-content="Tin gần đây">
-    <li *ngFor="let i of news" class="text-center">
-      <a routerLink="/chinguyentai/tin-tuc/{{i.id}}">
+    <li *ngFor="let i of news" class="text-center" >
+      <a routerLink="/chinguyentai/tin-tuc/{{i.id}}"  mdbTooltip="{{i.title}}">
         {{(i.title.length > 20) ? (i.title |  slice:0:15) + '...' : i.title}}
       </a>
     </li>
@@ -23,7 +23,7 @@
     <li>
       <mdb-carousel [animation]="'slide'">
         <ng-container *ngFor="let img of slideImages">
-          <mdb-carousel-item>
+          <mdb-carousel-item routerLink="/chinguyentai/thu-vien-anh">
             <img class="w-100" src="{{img.src}}" alt="First slide">
           </mdb-carousel-item>
         </ng-container>

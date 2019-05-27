@@ -1,6 +1,4 @@
-<h2>
-  Thư viện ảnh
-</h2>
+<h2> Thư viện ảnh </h2>
 
 <div class="d-flex justify-content-center" *ngIf="images.length === 0">
   <img src="https://loading.io/spinners/harmony/lg.harmony-taiji-spinner.gif" alt="">
@@ -8,9 +6,9 @@
 
 <div class="upload-wrapper mt-3 mb-3">
   <input type="file" id="file" class="inputfile" (change)="onSelectImage($event)">
-  <label for="file" class="btn indigo">Chọn hình đăng </label>
+  <label for="file" class="btn btn-sm indigo">Chọn hình đăng </label>
 
-  <button class="btn indigo" (click)="uploadImageToFirebase()">
+  <button class="btn btn-sm indigo" (click)="uploadImageToFirebase()">
     <i class="fa fa-upload"></i>
   </button>
 </div>
@@ -34,39 +32,12 @@
 
 </div>
 
-
 <div class="upload-process" *ngIf="uploadProcess === -1">
   <div class="alert alert-danger" role="alert">
     Đăng hình thất bại !
   </div>
   <br>
 </div>
-
-<!-- <div class="row popup">
-  <div class="col-md-4" *ngFor="let img of images | paginate: { itemsPerPage: 9, currentPage: p }"
-    style="margin-bottom: 15px;">
-
-    <mdb-card>
-      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
-        <mdb-card-img (click)="onSelectImg(img.src, img.id)" class="lib-item-image" src="{{img.src}}"
-          alt="Card image cap"></mdb-card-img>
-        <a>
-          <div class="mask"></div>
-        </a>
-      </div>
-      <button class="btn btn-sm indigo btn-zoom" (click)="onSelectImg(img.src, img.id)">
-        <i class="fas fa-search"></i>
-      </button>
-    </mdb-card>
-  </div>
-
-
-  <div class="pagination">
-    <pagination-controls (pageChange)="p = $event" previousLabel="Trang trước" nextLabel="Trang sau">
-    </pagination-controls>
-  </div>
-
-</div> -->
 
 <div class="row">
   <div class="col-md-12">

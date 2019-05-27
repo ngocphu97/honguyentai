@@ -36,6 +36,7 @@ export class TreeService {
       image: image,
       date: new Date()
     };
+    console.log(object);
     return this.http.post(this.url + '/news/' + id, object);
   }
 
@@ -66,7 +67,8 @@ export class TreeService {
       title: title,
       date: new Date()
     };
-    const url = this.url + '/news/' + id;
+    console.log(object);
+    const url = this.url + 'news/' + id;
     return this.http.put(url, object, id);
   }
 

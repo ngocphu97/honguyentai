@@ -47,6 +47,7 @@ export class NewsDetailComponent {
     private router: Router
   ) {
     route.params.subscribe((val) => {
+      this.id = val.id;
       this.getNewsById(val.id);
     });
   }
@@ -92,12 +93,12 @@ export class NewsDetailComponent {
     document.getElementById('newsText').innerHTML = this.newsText;
     document.getElementById('newsText').style.display = 'block';
     this.readMode = true;
+    console.log(this.id);
     this.service.updateNews(this.newsTitle, this.editorValue, this.id, this.imagePreview)
-      .subscribe(
-        () => {
-          alert('Đã thay đổi thành công');
-          this.router.navigate(['/chinguyentai/tin-tuc']);
-        }
+      .subscribe(() => {
+        alert('Đã thay đổi thành công');
+        this.router.navigate(['/chinguyentai/tin-tuc']);
+      }
       );
 
   }

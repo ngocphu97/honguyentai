@@ -1,7 +1,7 @@
-<div class="title">
+<div class="d-flex justify-content-between mb-2">
   <h3>Tin tức</h3>
   <a routerLink="/chinguyentai/them-tin-tuc" class="btn btn-sm btn-primary indigo pull-right">
-    <i class="fas fa-plus"></i> Thêm tin tức mới
+    <i class="fas fa-plus text-white"></i> Thêm tin tức mới
   </a>
 </div>
 
@@ -10,7 +10,7 @@
 </p>
 
 <div *ngIf="news.length > 0">
-  <div class="media" *ngFor="let n of news">
+  <div class="media pt-2 pb-3" *ngFor="let n of news | paginate: { itemsPerPage: 5, currentPage: p }">
     <img class="card-img-100 d-flex mr-3" src="{{n.image}}" alt="Generic placeholder image">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
@@ -19,5 +19,10 @@
 
       <small>{{n.date | date:"short"}}</small>
     </div>
+  </div>
+
+  <div class="pagination">
+    <pagination-controls (pageChange)="p = $event" previousLabel="Trang trước" nextLabel="Trang sau">
+    </pagination-controls>
   </div>
 </div>

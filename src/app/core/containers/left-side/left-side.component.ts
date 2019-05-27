@@ -14,31 +14,31 @@ export class LeftSideComponent implements OnInit {
     },
     {
       name: 'Doanh nhân nổi tiếng',
-      link: ''
+      link: '/chinguyentai/doanh-nhan'
     },
     {
       name: 'Hoạt động dòng họ',
-      link: ''
+      link: '/'
     },
     {
       name: 'Văn hóa đời sống',
-      link: ''
+      link: '/'
     },
     {
       name: 'Sách viết về dòng họ',
-      link: ''
+      link: '/chinguyentai/tin-tuc'
     },
     {
       name: 'Tác giả tác phẩm dòng họ',
-      link: ''
+      link: '/chinguyentai/tin-tuc'
     },
     {
       name: 'Cúng tiến công đức',
-      link: ''
+      link: '/chinguyentai/tin-tuc'
     },
     {
       name: 'Kết nối dòng họ',
-      link: ''
+      link: '/chinguyentai/lien-he'
     },
   ];
 

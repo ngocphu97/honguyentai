@@ -43,6 +43,9 @@ export class RightSideComponent implements OnInit {
           content: element.content,
           date: element.date
         };
+        if (this.news.length > 5) {
+          return this.news;
+        }
         this.news.push(n);
       });
     }, () => {
@@ -51,7 +54,6 @@ export class RightSideComponent implements OnInit {
   }
 
   generateSearchOptions(searchOptionArray) {
-
     this.options = searchOptionArray.map(option => {
       return {
         id: option.id,

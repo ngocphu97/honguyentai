@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+
+import { map } from 'rxjs/operators';
 
 import { TreeService } from '../service/tree.service';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-genealogy-history',
@@ -47,10 +47,4 @@ export class GenealogyHistoryComponent implements OnInit {
   createHTMLDOM(content) {
     document.getElementById('newsText').innerHTML = content;
   }
-
-  // update() {
-  //   this.service.updateDocument(this.doc.title, this.doc.content, this.doc.id).subscribe(d => {
-  //     console.log(d);
-  //   });
-  // }
 }

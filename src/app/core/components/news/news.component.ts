@@ -9,8 +9,9 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-
+  p = 1;
   news = [];
+
   constructor(private service: TreeService) {
   }
 
@@ -31,19 +32,8 @@ export class NewsComponent implements OnInit {
         if (!element.image) {
           element.image = 'https://www.wingstosoaronline.com/wp-content/themes/wingstosoar/images/default_post.jpg';
         }
-        const n = {
-          id: element.id,
-          title: element.title,
-          content: element.content,
-          date: element.date,
-          image: element.image
-        };
-        this.news.push(n);
+        this.news.push(element);
       });
     });
-  }
-
-  onGetNewsDetail(id) {
-    console.log(id);
   }
 }
