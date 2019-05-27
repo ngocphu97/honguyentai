@@ -15,6 +15,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
 import { FamilyTreeComponent } from './components/family-tree/family-tree.component';
 import { TreeFormComponent } from './components/tree-form/tree-form.component';
 import { FamilyTreeListComponent } from './components/family-tree-list/family-tree-list.component';
+import { GenealogyHistoryListComponent } from './components/genealogy-history-list/genealogy-history-list.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,10 @@ export const routes: Routes = [
     children: [
       {
         path: 'lich-su',
+        component: GenealogyHistoryListComponent
+      },
+      {
+        path: 'lich-su/:id',
         component: GenealogyHistoryComponent
       },
       {

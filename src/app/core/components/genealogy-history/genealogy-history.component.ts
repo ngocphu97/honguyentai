@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { TreeService } from '../service/tree.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-genealogy-history',
@@ -18,11 +19,34 @@ export class GenealogyHistoryComponent implements OnInit {
     update: new Date,
   };
 
-  constructor(private service: TreeService) {
+  id: string;
+
+  constructor(
+    private service: TreeService,
+    private route: ActivatedRoute
+  ) {
+
+    this.route.params.subscribe((val) => {
+      this.id = val.id;
+      this.getDocumentById(val.id);
+    });
+    // this.getDocuments();
   }
 
   ngOnInit() {
-    this.getDocuments();
+  }
+
+  getDocumentById(id) {
+    this.service.getDocumentById(id).pipe(
+      // map((data) => {
+      //   console.log(data);
+      //   const obj = Object.values(data.result);
+      //   return Object.values(data.result[0]);
+      // })
+    ).subscribe(document => {
+      this.doc = document.result;
+      this.createHTMLDOM(document.result.content);
+    });
   }
 
   getDocuments() {

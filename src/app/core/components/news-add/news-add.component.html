@@ -30,9 +30,16 @@
     <button class="btn btn-sm btn-primary indigo" type="submit">
       Đăng tin mới <i class="far fa-newspaper"></i>
     </button>
-    <button class="btn btn-sm btn-info" (click)="postDocument()">
-      Đăng tài liệu chung <i class="fas fa-book-open"></i>
-    </button>
+
+    <mat-form-field>
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option>None</mat-option>
+          <mat-option value="option1" (click)="postDocument()">Lịch sử dòng họ</mat-option>
+          <mat-option value="option2">Option 2</mat-option>
+          <mat-option value="option3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field>
   </div>
 
 </form>

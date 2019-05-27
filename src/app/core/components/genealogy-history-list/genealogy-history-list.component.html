@@ -1,0 +1,20 @@
+<div class="d-flex justify-content-between mb-2">
+  <h3>Lịch sử dòng họ</h3>
+</div>
+
+<div *ngIf="historyDocuments.length > 0">
+  <div class="media pt-2 pb-3" *ngFor="let n of historyDocuments | paginate: { itemsPerPage: 5, currentPage: p }">
+    <div class="media-body">
+      <h6 class="font-weight-bold mt-0">
+        <a routerLink="/chinguyentai/lich-su/{{n.id}}">{{n.title}}</a>
+      </h6>
+
+      <small>{{n.update | date:"short"}}</small>
+    </div>
+  </div>
+
+  <div *ngIf="historyDocuments.length > 4" class="pagination">
+    <pagination-controls (pageChange)="p = $event" previousLabel="Trang trước" nextLabel="Trang sau">
+    </pagination-controls>
+  </div>
+</div>

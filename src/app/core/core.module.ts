@@ -11,11 +11,11 @@ import {
   MatFormFieldModule,
   MatCardModule,
   MatTableModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatSelectModule
 } from '@angular/material';
 
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularFireModule } from 'angularfire2';
@@ -54,6 +54,7 @@ const firebase = {
     InputsModule, WavesModule, ButtonsModule,
     RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 
     BrowserAnimationsModule,
@@ -63,8 +64,8 @@ const firebase = {
     MatAutocompleteModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSelectModule,
 
-    ReactiveFormsModule,
     CKEditorModule,
     NgxPaginationModule,
     NgxGalleryModule,

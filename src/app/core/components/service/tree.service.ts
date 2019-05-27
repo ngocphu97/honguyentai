@@ -24,7 +24,6 @@ export class TreeService {
 
   getNewsById(id): any {
     const url = this.url + '/news/' + id;
-    console.log(url);
     return this.http.get(url);
   }
 
@@ -45,13 +44,17 @@ export class TreeService {
       id: id,
       title: title,
       content: content,
-      date: new Date()
+      update: new Date()
     };
     return this.http.post(this.url + '/history-documents/' + id, object);
   }
 
   getDocuments(): Observable<any> {
     return this.http.get(this.url + 'history-documents');
+  }
+
+  getDocumentById(id: string): Observable<any> {
+    return this.http.get(this.url + 'history-documents/' + id);
   }
 
   deleteNews(id) {
@@ -67,7 +70,6 @@ export class TreeService {
       title: title,
       date: new Date()
     };
-    console.log(object);
     const url = this.url + 'news/' + id;
     return this.http.put(url, object, id);
   }

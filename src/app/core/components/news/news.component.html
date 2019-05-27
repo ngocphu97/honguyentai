@@ -11,7 +11,7 @@
 
 <div *ngIf="news.length > 0">
   <div class="media pt-2 pb-3" *ngFor="let n of news | paginate: { itemsPerPage: 5, currentPage: p }">
-    <img class="card-img-100 d-flex mr-3" src="{{n.image}}" alt="Generic placeholder image">
+    <img class="card-img-100 d-flex mr-3" src="{{n.image}}">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
         <a routerLink="/chinguyentai/tin-tuc/{{n.id}}">{{n.title}}</a>

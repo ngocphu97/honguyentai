@@ -121,20 +121,6 @@
           }
         }
       };
-
-      var map = new google.visualization.Map(document.getElementById('map_div'));
-
-      map.draw(geoData, options);
-
-      google.visualization.events.addListener(table, 'select',
-        () => {
-          map.setSelection(table.getSelection());
-        });
-
-      google.visualization.events.addListener(map, 'select',
-        () => {
-          table.setSelection(map.getSelection());
-        });
     }
 
   </script>

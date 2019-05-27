@@ -22,6 +22,7 @@ import { IntroduceComponent } from './main-news/introduce/introduce.component';
 import { FamilyTreeComponent } from './family-tree/family-tree.component';
 import { TreeFormComponent } from './tree-form/tree-form.component';
 import { FamilyTreeListComponent } from './family-tree-list/family-tree-list.component';
+import { GenealogyHistoryListComponent } from './genealogy-history-list/genealogy-history-list.component';
 
 export const components = [
   NewsComponent,
@@ -47,5 +48,6 @@ export const components = [
   HistoryComponent,
   IntroduceComponent,
   FamilyTreeComponent,
-  FamilyTreeListComponent
+  FamilyTreeListComponent,
+  GenealogyHistoryListComponent
 ];
