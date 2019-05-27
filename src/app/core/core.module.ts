@@ -15,7 +15,7 @@ import {
 } from '@angular/material';
 
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md'
+import { InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularFireModule } from 'angularfire2';
