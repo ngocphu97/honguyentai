@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
-import { map } from 'rxjs/operators';
-
-import { TreeService } from '../service/tree.service';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { TreeService } from '../service/tree.service';
 
 @Component({
-  selector: 'app-genealogy-history',
-  templateUrl: './genealogy-history.component.html',
-  styleUrls: ['./genealogy-history.component.scss']
+  selector: 'app-memoir-detail',
+  templateUrl: './memoir-detail.component.html',
+  styleUrls: ['./memoir-detail.component.scss']
 })
-export class GenealogyHistoryComponent implements OnInit {
+export class MemoirDetailComponent implements OnInit {
 
   doc = {
     id: '',
@@ -27,8 +25,8 @@ export class GenealogyHistoryComponent implements OnInit {
   ) {
 
     this.route.params.subscribe((val) => {
-      this.id = val.genealogyHistoryId;
-      this.getDocumentById(val.genealogyHistoryId);
+      this.id = val.memoirId;
+      this.getDocumentById(val.memoirId);
     });
   }
 
@@ -36,7 +34,7 @@ export class GenealogyHistoryComponent implements OnInit {
   }
 
   getDocumentById(id) {
-    this.service.getDocumentById(id).pipe(
+    this.service.getGenealogyHistoryById(id).pipe(
     ).subscribe(document => {
       this.doc = document.result;
       this.createHTMLDOM(document.result.content);
@@ -65,4 +63,5 @@ export class GenealogyHistoryComponent implements OnInit {
   createHTMLDOM(content) {
     document.getElementById('newsText').innerHTML = content;
   }
+
 }

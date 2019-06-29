@@ -131,6 +131,10 @@ export class TreeService {
     return this.http.get(this.url + '/genealogy-history/');
   }
 
+  getGenealogyHistoryById(genealogyHistoryId: string): Observable<any> {
+    return this.http.get(this.url + '/genealogy-history/' + genealogyHistoryId);
+  }
+
   postGenealogyHistory(id, title, content, image): Observable<any> {
     const object = {
       id: id,

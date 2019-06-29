@@ -1,13 +1,13 @@
 <div class="d-flex justify-content-between mb-2">
-  <h3>Lịch sử dòng họ</h3>
+  <h3>Phả ký dòng họ</h3>
 </div>
 
-<div *ngIf="historyDocuments$ | async">
+<div *ngIf="documents$ | async">
   <div class="media pt-2 pb-3"
-    *ngFor="let doc of (historyDocuments$ | async) | paginate: { itemsPerPage: 5, currentPage: '1' }">
+    *ngFor="let doc of (documents$ | async) | paginate: { itemsPerPage: 5, currentPage: '1' }">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
-        <a routerLink="/chinguyentai/lich-su/{{doc.id}}">{{doc.title}}</a>
+        <a routerLink="/chinguyentai/pha-ky/{{doc.id}}">{{doc.title}}</a>
       </h6>
 
       <small>{{doc.update | date:"short"}}</small>

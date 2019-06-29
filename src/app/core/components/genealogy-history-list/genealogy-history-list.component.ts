@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TreeService } from '../service/tree.service';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-genealogy-history-list',
@@ -9,7 +10,7 @@ import { map } from 'rxjs/operators';
 })
 export class GenealogyHistoryListComponent implements OnInit {
 
-  historyDocuments = [];
+  historyDocuments$: Observable<any>;
 
   constructor(private service: TreeService) { }
 
@@ -18,15 +19,9 @@ export class GenealogyHistoryListComponent implements OnInit {
   }
 
   getDocuments() {
-    this.service.getDocuments().pipe(
-      map((data) => {
-        const obj = Object.values(data);
-        return Object.values(obj[0] );
-      })
-    ).subscribe(documents => {
-      console.log(documents);
-      this.historyDocuments = documents;
-    });
+    this.historyDocuments$ = this.service.getDocuments().pipe(
+      map(docs => Object.keys(docs.result).map((key) => docs.result[key]))
+    );
   }
 
 }

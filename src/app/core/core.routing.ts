@@ -23,12 +23,16 @@ export const routes: Routes = [
         component: fromComponents.GenealogyHistoryListComponent
       },
       {
-        path: 'lich-su/:id',
+        path: 'lich-su/:genealogyHistoryId',
         component: fromComponents.GenealogyHistoryComponent
       },
       {
         path: 'pha-ky',
-        component: fromComponents.GenealogyHistoryComponent
+        component: fromComponents.MemoirListComponent
+      },
+      {
+        path: 'pha-ky/:memoirId',
+        component: fromComponents.MemoirDetailComponent
       },
       {
         path: 'pha-do',

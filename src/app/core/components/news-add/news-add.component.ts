@@ -81,6 +81,10 @@ export class NewsAddComponent {
       .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
   }
 
+  onSelectGenealogyHistory() {
+
+  }
+
   postGenealogyHistory() {
     this.service.postGenealogyHistory(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview)
       .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
