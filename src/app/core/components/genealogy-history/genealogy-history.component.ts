@@ -30,7 +30,6 @@ export class GenealogyHistoryComponent implements OnInit {
       this.id = val.id;
       this.getDocumentById(val.id);
     });
-    // this.getDocuments();
   }
 
   ngOnInit() {
@@ -38,11 +37,6 @@ export class GenealogyHistoryComponent implements OnInit {
 
   getDocumentById(id) {
     this.service.getDocumentById(id).pipe(
-      // map((data) => {
-      //   console.log(data);
-      //   const obj = Object.values(data.result);
-      //   return Object.values(data.result[0]);
-      // })
     ).subscribe(document => {
       this.doc = document.result;
       this.createHTMLDOM(document.result.content);

@@ -2,20 +2,8 @@ import { Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainComponent } from './components/main/main.component';
-import { GenealogyHistoryComponent } from './components/genealogy-history/genealogy-history.component';
-import { MapComponent } from './components/map/map.component';
-import { MemberDetailComponent } from './components/member-detail/member-detail.component';
-import { EntrepreneursComponent } from './components/entrepreneurs/entrepreneurs.component';
-import { ImageLibComponent } from './components/image-lib/image-lib.component';
-import { NewsComponent } from './components/news/news.component';
-import { NewsDetailComponent } from './components/news-detail/news-detail.component';
-import { NewsAddComponent } from './components/news-add/news-add.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { QuestionsComponent } from './components/questions/questions.component';
-import { FamilyTreeComponent } from './components/family-tree/family-tree.component';
-import { TreeFormComponent } from './components/tree-form/tree-form.component';
-import { FamilyTreeListComponent } from './components/family-tree-list/family-tree-list.component';
-import { GenealogyHistoryListComponent } from './components/genealogy-history-list/genealogy-history-list.component';
+
+import * as fromComponents from './components';
 
 export const routes: Routes = [
   {
@@ -32,63 +20,67 @@ export const routes: Routes = [
     children: [
       {
         path: 'lich-su',
-        component: GenealogyHistoryListComponent
+        component: fromComponents.GenealogyHistoryListComponent
       },
       {
         path: 'lich-su/:id',
-        component: GenealogyHistoryComponent
+        component: fromComponents.GenealogyHistoryComponent
       },
       {
         path: 'pha-ky',
-        component: GenealogyHistoryComponent
+        component: fromComponents.GenealogyHistoryComponent
       },
       {
         path: 'pha-do',
-        component: FamilyTreeListComponent
+        component: fromComponents.FamilyTreeListComponent
       },
       {
         path: 'pha-do/:id',
-        component: FamilyTreeComponent
+        component: fromComponents.FamilyTreeComponent
       },
       {
         path: 'dia-do',
-        component: MapComponent
+        component: fromComponents.MapComponent
       },
       {
         path: 'them-thanh-vien',
-        component: TreeFormComponent
+        component: fromComponents.TreeFormComponent
       },
       {
         path: 'chi-tiet/thanh-vien/:id',
-        component: MemberDetailComponent
+        component: fromComponents.MemberDetailComponent
       },
       {
         path: 'doanh-nhan',
-        component: EntrepreneursComponent
+        component: fromComponents.EntrepreneursComponent
+      },
+      {
+        path: 'doanh-nhan/:entrepreneursId',
+        component: fromComponents.EntrepreneursDetailComponent
       },
       {
         path: 'thu-vien-anh',
-        component: ImageLibComponent
+        component: fromComponents.ImageLibComponent
       },
       {
         path: 'tin-tuc',
-        component: NewsComponent
+        component: fromComponents.NewsComponent
       },
       {
         path: 'tin-tuc/:id',
-        component: NewsDetailComponent
+        component: fromComponents.NewsDetailComponent
       },
       {
         path: 'them-tin-tuc',
-        component: NewsAddComponent
+        component: fromComponents.NewsAddComponent
       },
       {
         path: 'lien-he',
-        component: ContactComponent
+        component: fromComponents.ContactComponent
       },
       {
         path: 'thac-mac',
-        component: QuestionsComponent
+        component: fromComponents.QuestionsComponent
       }
     ]
   },

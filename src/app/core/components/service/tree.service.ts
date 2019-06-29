@@ -18,16 +18,19 @@ export class TreeService {
 
   constructor(private http: HttpClient) { }
 
-  getNews(): any {
+  /**
+   * NEWS
+   */
+  getNews(): Observable<any> {
     return this.http.get(this.url + 'news');
   }
 
-  getNewsById(id): any {
+  getNewsById(id): Observable<any> {
     const url = this.url + '/news/' + id;
     return this.http.get(url);
   }
 
-  postNews(id, title, content, image): any {
+  postNews(id, title, content, image): Observable<any> {
     const object = {
       id: id,
       title: title,
@@ -35,29 +38,10 @@ export class TreeService {
       image: image,
       date: new Date()
     };
-    console.log(object);
     return this.http.post(this.url + '/news/' + id, object);
   }
 
-  postDocument(id, title, content): any {
-    const object = {
-      id: id,
-      title: title,
-      content: content,
-      update: new Date()
-    };
-    return this.http.post(this.url + '/history-documents/' + id, object);
-  }
-
-  getDocuments(): Observable<any> {
-    return this.http.get(this.url + 'history-documents');
-  }
-
-  getDocumentById(id: string): Observable<any> {
-    return this.http.get(this.url + 'history-documents/' + id);
-  }
-
-  deleteNews(id) {
+  deleteNews(id): Observable<any> {
     const url = this.url + '/news/' + id;
     return this.http.put(url, id);
   }
@@ -74,6 +58,27 @@ export class TreeService {
     return this.http.put(url, object, id);
   }
 
+  /**
+   * DOCUMENTS
+   */
+  getDocuments(): Observable<any> {
+    return this.http.get(this.url + 'history-documents');
+  }
+
+  getDocumentById(id: string): Observable<any> {
+    return this.http.get(this.url + 'history-documents/' + id);
+  }
+
+  postDocument(id, title, content): Observable<any> {
+    const object = {
+      id: id,
+      title: title,
+      content: content,
+      update: new Date()
+    };
+    return this.http.post(this.url + '/history-documents/' + id, object);
+  }
+
   updateDocument(title, content, id): Observable<any> {
     const object = {
       content: content,
@@ -85,11 +90,66 @@ export class TreeService {
     return this.http.put(url, object, id);
   }
 
-  getImage(): any {
+  /**
+    * Entrepreneurs
+    */
+  getEntrepreneurs(): Observable<any> {
+    return this.http.get(this.url + '/entrepreneurs/');
+  }
+
+  getEntrepreneursById(id: string): Observable<any> {
+    return this.http.get(this.url + `/entrepreneurs/${id}`);
+  }
+
+  postEntrepreneurs(id, title, content, image): Observable<any> {
+    const object = {
+      id: id,
+      title: title,
+      content: content,
+      image: image,
+      update: new Date()
+    };
+    return this.http.post(this.url + '/entrepreneurs/' + id, object);
+  }
+
+  updateEntrepreneurs(title, content, id, image): Observable<any> {
+    const object = {
+      content: content,
+      id: id,
+      image: image,
+      title: title,
+      update: new Date()
+    };
+    const url = this.url + 'entrepreneurs/' + id;
+    return this.http.put(url, object, id);
+  }
+
+  /**
+    * Genealogy History
+    */
+  getGenealogyHistory(): Observable<any> {
+    return this.http.get(this.url + '/genealogy-history/');
+  }
+
+  postGenealogyHistory(id, title, content, image): Observable<any> {
+    const object = {
+      id: id,
+      title: title,
+      content: content,
+      image: image,
+      update: new Date()
+    };
+    return this.http.post(this.url + '/genealogy-history/' + id, object);
+  }
+
+  /**
+   * IMAGES
+   */
+  getImage(): Observable<any> {
     return this.http.get(this.url + 'imageLib');
   }
 
-  postImage(id, src): any {
+  postImage(id, src): Observable<any> {
     const object = {
       id: id,
       src: src,
@@ -98,32 +158,35 @@ export class TreeService {
     return this.http.post(this.url + '/imageLib/' + id, object);
   }
 
-  postTreeData(id: string, data: any) {
+  /**
+   * FAMILY TREE DATA
+   */
+  postTreeData(id: string, data: any): Observable<any> {
     return this.http.put(this.url + '/familyTreeData/' + id, data);
   }
 
-  getTreeData(id: string) {
+  getTreeData(id: string): Observable<any> {
     return this.http.get(this.url + '/familyTreeData/' + id);
   }
 
-  getTreeListId() {
+  getTreeListId(): Observable<any> {
     return this.http.get(this.url + '/familyTreeData/');
   }
 
-  createFamilyTreeList(familyItem) {
+  createFamilyTreeList(familyItem): Observable<any> {
     return this.http.post(this.url + '/familyTreeList/' + familyItem.id, familyItem);
   }
 
-  getFamilyListData() {
+  getFamilyListData(): Observable<any> {
     return this.http.get(this.url + '/familyTreeList');
   }
 
-  delTree() {
+  delTree(): Observable<any> {
     const id = 'undefined';
     return this.http.delete(this.url + '/familyTreeList/' + id);
   }
 
-  updateFamilyListData(updateFamilyData, id) {
+  updateFamilyListData(updateFamilyData, id): Observable<any> {
     return this.http.put(this.url + '/familyTreeList/' + id, updateFamilyData);
   }
 }

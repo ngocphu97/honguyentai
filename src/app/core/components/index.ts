@@ -23,6 +23,36 @@ import { FamilyTreeComponent } from './family-tree/family-tree.component';
 import { TreeFormComponent } from './tree-form/tree-form.component';
 import { FamilyTreeListComponent } from './family-tree-list/family-tree-list.component';
 import { GenealogyHistoryListComponent } from './genealogy-history-list/genealogy-history-list.component';
+import { EntrepreneursDetailComponent } from './entrepreneurs-detail/entrepreneurs-detail.component';
+
+export {
+  NewsComponent,
+  ContactComponent,
+  EntrepreneursComponent,
+  ImageLibComponent,
+  MainComponent,
+  MapComponent,
+  MemberDetailComponent,
+  NewsAddComponent,
+  NewsDetailComponent,
+  QuestionsComponent,
+  StemmataComponent,
+  TreeFormComponent,
+  GenealogyHistoryComponent,
+  AnnouncementComponent,
+  FamousPeopleComponent,
+  ActivitiesComponent,
+  CultureLifeComponent,
+  BooksComponent,
+  WorshipingMeritComponent,
+  ConnectPeopleComponent,
+  HistoryComponent,
+  IntroduceComponent,
+  FamilyTreeComponent,
+  FamilyTreeListComponent,
+  GenealogyHistoryListComponent,
+  EntrepreneursDetailComponent
+};
 
 export const components = [
   NewsComponent,
@@ -49,5 +79,6 @@ export const components = [
   IntroduceComponent,
   FamilyTreeComponent,
   FamilyTreeListComponent,
-  GenealogyHistoryListComponent
+  GenealogyHistoryListComponent,
+  EntrepreneursDetailComponent
 ];

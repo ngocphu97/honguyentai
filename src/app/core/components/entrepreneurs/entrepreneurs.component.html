@@ -1,3 +1,22 @@
 <h2>Doanh nhân nổi tiếng</h2>
 
-Hiện chúng tôi đang cập nhật. Hãy quay lại sau
+<div *ngIf="(entrepreneursDocuments$ | async)">
+  <div class="media pt-2 pb-3"
+    *ngFor="let doc of (entrepreneursDocuments$ | async) | paginate: { itemsPerPage: 5, currentPage: '1' }">
+
+    <img class="card-img-100 d-flex mr-3" src="{{doc.image}}">
+
+    <div class="media-body">
+      <h6 class="font-weight-bold mt-0">
+        <a routerLink="/chinguyentai/doanh-nhan/{{doc.id}}">{{doc.title}}</a>
+      </h6>
+
+      <small>Cập nhật: {{doc.update | date:"short"}}</small>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <pagination-controls (pageChange)="p = $event" previousLabel="Trang trước" nextLabel="Trang sau">
+    </pagination-controls>
+  </div>
+</div>

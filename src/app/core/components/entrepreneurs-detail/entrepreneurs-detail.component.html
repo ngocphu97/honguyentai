@@ -1,0 +1,52 @@
+<div class="loading" *ngIf="loading">
+    <img src="https://loading.io/spinners/harmony/lg.harmony-taiji-spinner.gif" alt="">
+  </div>
+  
+  <div>
+  
+    <h3 class="text-center"> {{newsTitle}} </h3>
+  
+    <div class="news-infomation">
+      <small>Cập nhật lúc: {{newsDate | date:"short"}}</small>
+      <button class="btn btn-sm indigo" mdbTooltip="Chỉnh sửa" placement="bottom" (click)="toogleEditMode()">
+        <i class="fa fa-pencil"></i>
+      </button>
+    </div>
+  
+    <div id="newsImage">
+      <img src="{{newsImage}}" class="img-fluid" alt="">
+    </div>
+  
+    <perfect-scrollbar style="max-height: 850px;">
+      <p class="m-3" id="newsText">
+      </p>
+    </perfect-scrollbar>
+  
+  
+    <div *ngIf="readMode === false">
+      <form #newsForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="title">Tiêu đề</label>
+          <input type="text" class="form-control" id="title" value="Tiêu đề 1" placeholder="Tiêu đề tin tức ..."
+            [(ngModel)]="newsTitle" name="newsTitle" required>
+        </div>
+  
+        <div>
+          <label for="">Upload Hình ảnh</label>
+          <input type="file" (change)="onFileSelected($event)">
+          <br>
+          <img class="img-fluid" src="{{imagePreview}}" alt="">
+          <br>
+        </div>
+  
+        <ck-editor name="editor1" [(ngModel)]="editorValue" skin="moono-lisa" language="en" [fullPage]="true"
+          [config]="editorConfig" [readonly]="readonly">
+        </ck-editor>
+  
+        <button class="btn btn-primary" type="submit">Lưu</button>
+  
+      </form>
+    </div>
+  
+  </div>
+  

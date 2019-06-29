@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TreeService } from '../service/tree.service';
 import { HttpClient } from '@angular/common/http';
 
@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './news-add.component.html',
   styleUrls: ['./news-add.component.scss']
 })
-export class NewsAddComponent implements OnInit {
+export class NewsAddComponent {
 
   selectedFile = null;
   imagePreview: any;
@@ -48,8 +48,6 @@ export class NewsAddComponent implements OnInit {
 
   constructor(private service: TreeService, private http: HttpClient) { }
 
-  ngOnInit() {
-  }
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0];
@@ -75,16 +73,17 @@ export class NewsAddComponent implements OnInit {
 
   postDocument() {
     this.service.postDocument(this.uuidv4(), this.newsTitle, this.editorValue)
-      .subscribe(
-        (data) => {
-          if (data.ok) {
-            this.postStatus = true;
-          }
-        },
-        () => {
-          this.postStatus = false;
-        }
-      );
+      .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
+  }
+
+  postEntrepreneurs() {
+    this.service.postEntrepreneurs(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview)
+      .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
+  }
+
+  postGenealogyHistory() {
+    this.service.postGenealogyHistory(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview)
+      .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
   }
 
 }
