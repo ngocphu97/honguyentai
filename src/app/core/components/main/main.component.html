@@ -41,14 +41,20 @@
 
 <perfect-scrollbar style="max-height: 850px;" class="mt-3">
   <div class="px-3">
-    <app-announcement></app-announcement>
-    <app-introduce></app-introduce>
-    <app-history></app-history>
-    <app-famous-people></app-famous-people>
-    <app-activities></app-activities>
-    <app-culture-life></app-culture-life>
-    <app-books></app-books>
-    <app-worshiping-merit></app-worshiping-merit>
-    <app-connect-people></app-connect-people>
+
+    <app-announcement *ngIf="(common$ | async)" [announcement]="(common$ | async)"></app-announcement>
+
+    <app-history *ngIf="(history$ | async)" [history]="(history$ | async)"></app-history>
+
+    <app-activities *ngIf="(activities$ | async)" [activities]="(activities$ | async)"></app-activities>
+
+    <app-culture-life *ngIf="(culturelife$ | async)" [culturelife]="(culturelife$ | async)"></app-culture-life>
+
+    <app-books *ngIf="(books$ | async)" [books]="(books$ | async)"></app-books>
+
+    <app-worshiping-merit *ngIf="(money$ | async)" [money]="(money$ | async)"></app-worshiping-merit>
+
+    <app-connect-people *ngIf="(connect$ | async)" [connect]="(connect$ | async)"></app-connect-people>
+
   </div>
 </perfect-scrollbar>

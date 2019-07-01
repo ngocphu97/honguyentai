@@ -66,13 +66,8 @@ export class NewsAddComponent {
     );
   }
 
-  onSubmit() {
-    this.service.postNews(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview)
-      .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
-  }
-
   postDocument() {
-    this.service.postDocument(this.uuidv4(), this.newsTitle, this.editorValue)
+    this.service.postDocument(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview)
       .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
   }
 
@@ -81,13 +76,18 @@ export class NewsAddComponent {
       .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
   }
 
-  onSelectGenealogyHistory() {
-
-  }
-
   postGenealogyHistory() {
     this.service.postGenealogyHistory(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview)
       .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
   }
 
+  postNews() {
+    this.service.postNews(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview)
+      .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
+  }
+
+  postGeneralAnnounce(type: string) {
+    this.service.postGeneral(this.uuidv4(), this.newsTitle, this.editorValue, this.imagePreview, type)
+      .subscribe(data => data.ok ? this.postStatus = true : this.postStatus = false);
+  }
 }

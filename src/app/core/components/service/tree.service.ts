@@ -69,10 +69,11 @@ export class TreeService {
     return this.http.get(this.url + 'history-documents/' + id);
   }
 
-  postDocument(id, title, content): Observable<any> {
+  postDocument(id, title, content, image): Observable<any> {
     const object = {
       id: id,
       title: title,
+      image: image,
       content: content,
       update: new Date()
     };
@@ -144,6 +145,29 @@ export class TreeService {
       update: new Date()
     };
     return this.http.post(this.url + '/genealogy-history/' + id, object);
+  }
+
+  /**
+   * GENERAL
+   */
+
+  postGeneral(id, title, content, image, type): Observable<any> {
+    const object = {
+      id: id,
+      title: title,
+      content: content,
+      image: image,
+      update: new Date()
+    };
+    return this.http.post(this.url + `/general/${type}/` + id, object);
+  }
+
+  getGeneralByType(type: string): Observable<any> {
+    return this.http.get(this.url + `/general/${type}`);
+  }
+
+  getGeneralByTypeAndId(type: string, id: string): Observable<any> {
+    return this.http.get(this.url + `/general/${type}/${id}`);
   }
 
   /**

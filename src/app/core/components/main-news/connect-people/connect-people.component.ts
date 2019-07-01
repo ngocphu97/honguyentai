@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-connect-people',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./connect-people.component.scss']
 })
 export class ConnectPeopleComponent implements OnInit {
+
+  @Input() connect: any;
 
   constructor() { }
 

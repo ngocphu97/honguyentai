@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-worshiping-merit',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./worshiping-merit.component.scss']
 })
 export class WorshipingMeritComponent implements OnInit {
+
+  @Input() money: any
 
   constructor() { }
 

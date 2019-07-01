@@ -26,21 +26,26 @@
     [config]="editorConfig" [readonly]="readonly">
   </ck-editor>
 
-  <div class="actions float-right">
-    <button class="btn btn-sm btn-primary indigo" type="submit">
-      Đăng tin mới <i class="far fa-newspaper"></i>
-    </button>
-
+  <div class="mt-3 actions">
     <mat-form-field>
-      <mat-label>Select an option</mat-label>
+      <mat-label>Chọn tài liệu đăng</mat-label>
       <mat-select>
-        <mat-option>None</mat-option>
-        <mat-option value="option1" (click)="postDocument()">Lịch sử dòng họ</mat-option>
-        <mat-option value="option2" (click)="postEntrepreneurs()">Doanh nhân nổi tiếng</mat-option>
-        <mat-option value="option3" (click)="postGenealogyHistory()">Phả ký</mat-option>
-        <!-- <mat-option value="option4" (click)="postQuestion()">Giải đáp thắc mắc</mat-option> -->
+        <mat-option value="option1" (click)="postNews()">Tin tức</mat-option>
+        <mat-option value="option2" (click)="postDocument()">Lịch sử dòng họ</mat-option>
+        <mat-option value="option3" (click)="postEntrepreneurs()">Doanh nhân nổi tiếng</mat-option>
+        <mat-option value="option4" (click)="postGenealogyHistory()">Phả ký</mat-option>
+        <mat-optgroup [label]="generalInfo">
+          Thông tin chung
+          <mat-option (click)="postGeneralAnnounce('common')">Thông báo chung</mat-option>
+          <mat-option (click)="postGeneralAnnounce('activities')">Hoạt động dòng họ</mat-option>
+          <mat-option (click)="postGeneralAnnounce('lifestyle')">Văn hóa đời sống</mat-option>
+          <mat-option (click)="postGeneralAnnounce('books')">Sách viết về dòng họ</mat-option>
+          <mat-option (click)="postGeneralAnnounce('money')">Cúng tiến công đức</mat-option>
+          <mat-option (click)="postGeneralAnnounce('connect')">Kết nối dòng họ</mat-option>
+        </mat-optgroup>
       </mat-select>
     </mat-form-field>
   </div>
+
 
 </form>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-announcement',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnnouncementComponent implements OnInit {
 
-  constructor() { }
+  @Input() announcement: any;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
-
 }
+
