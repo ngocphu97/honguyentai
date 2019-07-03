@@ -4,7 +4,7 @@
 
 <h2>Thêm tin tức</h2>
 
-<form #newsForm="ngForm" (ngSubmit)="onSubmit()">
+<form #newsForm="ngForm">
   <div class="form-group">
     <input type="text" class="form-control" id="title" value="Tiêu đề 1" placeholder="Tiêu đề tin tức ..."
       [(ngModel)]="newsTitle" name="newsTitle" required>
@@ -34,7 +34,7 @@
         <mat-option value="option2" (click)="postDocument()">Lịch sử dòng họ</mat-option>
         <mat-option value="option3" (click)="postEntrepreneurs()">Doanh nhân nổi tiếng</mat-option>
         <mat-option value="option4" (click)="postGenealogyHistory()">Phả ký</mat-option>
-        <mat-optgroup [label]="generalInfo">
+        <mat-optgroup [label]="'Tin chung'">
           Thông tin chung
           <mat-option (click)="postGeneralAnnounce('common')">Thông báo chung</mat-option>
           <mat-option (click)="postGeneralAnnounce('activities')">Hoạt động dòng họ</mat-option>
