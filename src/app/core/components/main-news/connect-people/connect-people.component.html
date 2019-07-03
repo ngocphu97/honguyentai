@@ -6,19 +6,18 @@
 
   <div class="media mt-4 px-1">
     <img class="card-img-100 d-flex mr-3"
-      src="http://baovinhphuc.com.vn/thumbnail/550/nga.jpg?url=Storage/Images/2016/6/15/nga.jpg"
+      src="{{connect[0].image}}"
       alt="Generic placeholder image">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
         <a href="">
-          Danh sách công đức tại lễ giỗ Ngô Quyền 2019
+          {{connect[0].title}}
         </a>
       </h6>
       <div>
         <ul>
-          <li>Chúc mừng Xuân Kỷ Hợi 2019
-          </li>
-          <li>Thư mời dự Lễ Dâng hương Xuân Kỷ Hợi 2019
+          <li *ngFor="let i of connect">
+            {{i.title}}
           </li>
         </ul>
       </div>

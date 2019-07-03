@@ -5,19 +5,16 @@
   </div>
 
   <div class="media mt-4 px-1">
-    <img class="card-img-100 d-flex mr-3" src="https://www.freeiconspng.com/uploads/history-png-30.png"
+    <img class="card-img-100 d-flex mr-3" src="{{history[0].image}}"
       alt="Generic placeholder image">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
-        <a href="">Tổ quán của dòng họ </a>
+        <a href="">{{history[0].title}}</a>
       </h6>
       <div>
         <ul>
-          <li>
-            Chúc mừng Xuân Kỷ Hợi 2019
-          </li>
-          <li>
-            Thư mời dự Lễ Dâng hương Xuân Kỷ Hợi 2019
+          <li *ngFor="let i of history">
+            {{i.title}}
           </li>
         </ul>
     </div>

@@ -5,20 +5,19 @@
   </div>
 
   <div class="media mt-4 px-1">
-    <img class="card-img-100 d-flex mr-3" 
-    src="https://media.tintucvietnam.vn/uploads/medias/2018/03/07/1024x1024/vov-60-wxlwjpg-bb-baaac9o86K.jpg"
+    <img class="card-img-100 d-flex mr-3"
+      src="{{money[0].image}}"
       alt="Generic placeholder image">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
         <a href="">
-          Danh sách công đức tại lễ giỗ Ngô Quyền 2019
+          {{money[0].title}}
         </a>
       </h6>
       <div>
         <ul>
-          <li>Chúc mừng Xuân Kỷ Hợi 2019
-          </li>
-          <li>Thư mời dự Lễ Dâng hương Xuân Kỷ Hợi 2019
+          <li *ngFor="let i of money">
+            {{i.title}}
           </li>
         </ul>
       </div>

@@ -12,6 +12,7 @@ export class MainComponent implements OnInit {
 
   loading = false;
   news = [];
+  noImageUrl = 'assets/img/no-image.jpg';
 
   common$: Observable<any>;
   history$: Observable<any>;
@@ -21,17 +22,30 @@ export class MainComponent implements OnInit {
   money$: Observable<any>;
   connect$: Observable<any>;
 
+
   constructor(private service: TreeService) { }
 
   ngOnInit() {
     this.getNews();
-    this.getGeneralByTypeCommon();
-    this.getGeneralByTypeActivities();
-    this.getGeneralByTypeBooks();
-    this.getGeneralByTypeConnect();
-    this.getGeneralByTypeCulturelift();
-    this.getGeneralByTypeHistory();
-    this.getGeneralByTypeMoney()
+    this.initData();
+  }
+
+  initData() {
+    this.common$ = new Observable<any>();
+    this.history$ = new Observable<any>();
+    this.activities$ = new Observable<any>();
+    this.culturelife$ = new Observable<any>();
+    this.books$ = new Observable<any>();
+    this.money$ = new Observable<any>();
+    this.connect$ = new Observable<any>();
+
+    this.common$ = this.getSomething('common', this.common$);
+    this.history$ = this.getSomething('history', this.history$);
+    this.activities$ = this.getSomething('activities', this.activities$);
+    this.culturelife$ = this.getSomething('culturelife', this.culturelife$);
+    this.books$ = this.getSomething('books', this.books$);
+    this.money$ = this.getSomething('money', this.money$);
+    this.connect$ = this.getSomething('connect', this.connect$);
   }
 
   getNews() {
@@ -68,45 +82,20 @@ export class MainComponent implements OnInit {
     });
   }
 
-  getGeneralByTypeCommon() {
-    this.common$ = this.service.getGeneralByType('common').pipe(
-      map(docs => Object.keys(docs.result).map((key) => docs.result[key]))
-    );
-  }
+  getSomething(type: string, returnVariable: Observable<any>): Observable<any> {
+    return returnVariable = this.service.getGeneralByType(type).pipe(
+      map(docs => Object.keys(docs.result).map((key) => {
+        console.log(docs.result[key]);
+        if (!docs.result[key].image) {
+          const documents = {
+            ...docs.result[key],
+            image: this.noImageUrl
+          };
+          return documents;
+        }
 
-  getGeneralByTypeHistory() {
-    this.history$ = this.service.getGeneralByType('history').pipe(
-      map(docs => Object.keys(docs.result).map((key) => docs.result[key]))
-    );
-  }
-
-  getGeneralByTypeActivities() {
-    this.activities$ = this.service.getGeneralByType('activities').pipe(
-      map(docs => Object.keys(docs.result).map((key) => docs.result[key]))
-    );
-  }
-
-  getGeneralByTypeCulturelift() {
-    this.culturelife$ = this.service.getGeneralByType('culturelife').pipe(
-      map(docs => Object.keys(docs.result).map((key) => docs.result[key]))
-    );
-  }
-
-  getGeneralByTypeBooks() {
-    this.books$ = this.service.getGeneralByType('books').pipe(
-      map(docs => Object.keys(docs.result).map((key) => docs.result[key]))
-    );
-  }
-
-  getGeneralByTypeMoney() {
-    this.money$ = this.service.getGeneralByType('money').pipe(
-      map(docs => Object.keys(docs.result).map((key) => docs.result[key]))
-    );
-  }
-
-  getGeneralByTypeConnect() {
-    this.connect$ = this.service.getGeneralByType('connect').pipe(
-      map(docs => Object.keys(docs.result).map((key) => docs.result[key]))
+        return docs.result[key];
+      }))
     );
   }
 }

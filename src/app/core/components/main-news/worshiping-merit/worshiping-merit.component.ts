@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class WorshipingMeritComponent implements OnInit {
 
-  @Input() money: any
+  @Input() money: any;
 
   constructor() { }
 

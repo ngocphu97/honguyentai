@@ -16,6 +16,8 @@ export class TreeService {
     }
   };
 
+  noImageUrl = 'assets/img/no-image.jpg';
+
   constructor(private http: HttpClient) { }
 
   /**
@@ -152,6 +154,10 @@ export class TreeService {
    */
 
   postGeneral(id, title, content, image, type): Observable<any> {
+    if (image === null) {
+      image = this.noImageUrl;
+    }
+
     const object = {
       id: id,
       title: title,
@@ -159,6 +165,7 @@ export class TreeService {
       image: image,
       update: new Date()
     };
+
     return this.http.post(this.url + `/general/${type}/` + id, object);
   }
 

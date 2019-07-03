@@ -6,17 +6,16 @@
 
   <div class="media mt-4 px-1">
     <img class="card-img-100 d-flex mr-3"
-      src="https://www.shareicon.net/download/2016/10/07/840293_announcement_512x512.png"
+      src="{{books[0].image}}"
       alt="Generic placeholder image">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
-        <a href="">Đại Nam Liệt Truyện (Tập 01)</a>
+        <a href="">{{books[0].title}}</a>
       </h6>
       <div>
         <ul>
-          <li>Đại Nam Liệt Truyện (Tập 02)
-          </li>
-          <li>Đại Nam Liệt Truyện (Tập 03)
+          <li *ngFor="let i of books">
+            {{i.title}}
           </li>
         </ul>
       </div>
