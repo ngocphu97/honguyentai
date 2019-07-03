@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
 import { TreeService } from '../service/tree.service';
+import { map, catchError } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  selector: 'app-general-list',
+  templateUrl: './general-list.component.html',
+  styleUrls: ['./general-list.component.scss']
 })
-export class MainComponent implements OnInit {
+export class GeneralListComponent implements OnInit {
 
-  loading = false;
-  news = [];
   noImageUrl = 'assets/img/no-image.jpg';
 
   common$: Observable<any>;
@@ -22,11 +20,9 @@ export class MainComponent implements OnInit {
   money$: Observable<any>;
   connect$: Observable<any>;
 
-
   constructor(private service: TreeService) { }
 
   ngOnInit() {
-    this.getNews();
     this.initData();
   }
 
@@ -40,46 +36,11 @@ export class MainComponent implements OnInit {
     this.connect$ = new Observable<any>();
 
     this.common$ = this.getSomething('common', this.common$);
-    // this.history$ = this.getSomething('history', this.history$);
     this.activities$ = this.getSomething('activities', this.activities$);
     this.lifestyle$ = this.getSomething('lifestyle', this.lifestyle$);
     this.books$ = this.getSomething('books', this.books$);
     this.money$ = this.getSomething('money', this.money$);
     this.connect$ = this.getSomething('connect', this.connect$);
-  }
-
-  getNews() {
-    this.loading = true;
-    let newsArray = [];
-    this.service.getNews().pipe(
-      map((data) => {
-        const obj = Object.values(data);
-        newsArray = Object.values(obj[0]);
-        return newsArray;
-      })
-    ).subscribe(val => {
-      val.forEach(element => {
-
-        const cleanText = element.content.replace(/<\/?[^>]+(>|$)/g, '');
-
-        if (!element.image) {
-          element.image = this.noImageUrl;
-        }
-
-        const n = {
-          id: element.id,
-          image: element.image,
-          title: element.title,
-          content: cleanText,
-        };
-        this.news.push(n);
-      });
-
-      this.loading = false;
-
-    }, error => {
-      this.news = [];
-    });
   }
 
   getSomething(type: string, returnVariable: Observable<any>): Observable<any> {
@@ -101,4 +62,6 @@ export class MainComponent implements OnInit {
       })
     );
   }
+
+
 }

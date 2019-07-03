@@ -15,9 +15,11 @@
         <div [ngClass]="{active: i === 0}" class="carousel-item">
           <img class="d-block thumnail-custom" src="{{n.image}}" alt="First slide">
           <div class="carousel-caption">
-            <h3>{{n.title}}</h3>
+            <a routerLink="/chinguyentai/tin-tuc/{{n.id}}" class="text-black">
+              <h4>{{n.title}}</h4>
+            </a>
             <a routerLink="/chinguyentai/tin-tuc/{{n.id}}" class="float-left">
-              <i class="fas fa-sign-out-alt"></i> Xem thêm ...
+              <i class="fas fa-sign-out-alt"></i> Xem thêm
             </a>
           </div>
         </div>
@@ -48,7 +50,7 @@
 
     <app-activities *ngIf="(activities$ | async)" [activities]="(activities$ | async)"></app-activities>
 
-    <app-culture-life *ngIf="(culturelife$ | async)" [culturelife]="(culturelife$ | async)"></app-culture-life>
+    <app-culture-life *ngIf="(lifestyle$ | async)" [culturelife]="(lifestyle$ | async)"></app-culture-life>
 
     <app-books *ngIf="(books$ | async)" [books]="(books$ | async)"></app-books>
 

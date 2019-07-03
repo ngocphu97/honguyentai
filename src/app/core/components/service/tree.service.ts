@@ -177,6 +177,22 @@ export class TreeService {
     return this.http.get(this.url + `/general/${type}/${id}`);
   }
 
+  updateGeneral(id, title, content, image, type): Observable<any> {
+    if (image === null) {
+      image = this.noImageUrl;
+    }
+
+    const object = {
+      id: id,
+      title: title,
+      content: content,
+      image: image,
+      update: new Date()
+    };
+
+    return this.http.put(this.url + `/general/${type}/` + id, object);
+  }
+
   /**
    * IMAGES
    */

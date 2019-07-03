@@ -26,6 +26,8 @@ import { GenealogyHistoryListComponent } from './genealogy-history-list/genealog
 import { EntrepreneursDetailComponent } from './entrepreneurs-detail/entrepreneurs-detail.component';
 import { MemoirListComponent } from './memoir-list/memoir-list.component';
 import { MemoirDetailComponent } from './memoir-detail/memoir-detail.component';
+import { GeneralListComponent } from './general-list/general-list.component';
+import { GeneralDetailComponent } from './general-detail/general-detail.component';
 
 export {
   NewsComponent,
@@ -55,7 +57,9 @@ export {
   GenealogyHistoryListComponent,
   EntrepreneursDetailComponent,
   MemoirListComponent,
-  MemoirDetailComponent
+  MemoirDetailComponent,
+  GeneralListComponent,
+  GeneralDetailComponent
 };
 
 export const components = [
@@ -86,5 +90,7 @@ export const components = [
   GenealogyHistoryListComponent,
   EntrepreneursDetailComponent,
   MemoirListComponent,
-  MemoirDetailComponent
+  MemoirDetailComponent,
+  GeneralListComponent,
+  GeneralDetailComponent,
 ];

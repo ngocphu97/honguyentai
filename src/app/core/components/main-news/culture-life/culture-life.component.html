@@ -1,4 +1,4 @@
-<section class="my-5 z-depth-1 ">
+<section class="my-5 z-depth-1" *ngIf="culturelife">
 
   <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
     <p class="mr-4 mb-0">Văn hóa đời sống</p>
@@ -10,11 +10,11 @@
       alt="Generic placeholder image">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
-        <a href="">{{culturelife[0].title</a>
+        <a routerLink="/chinguyentai/thong-tin-chung/lifestyle/{{culturelife[0].id}}">{{culturelife[0].title}}</a>
       </h6>
       <div>
         <ul>
-          <li *ngFor="let i of culturelife">
+          <li routerLink="/chinguyentai/thong-tin-chung/lifestyle/{{i.id}}" *ngFor="let i of culturelife">
             {{i.title}}
           </li>
         </ul>

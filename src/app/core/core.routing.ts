@@ -71,6 +71,14 @@ export const routes: Routes = [
         component: fromComponents.NewsComponent
       },
       {
+        path: 'thong-tin-chung',
+        component: fromComponents.GeneralListComponent
+      },
+      {
+        path: 'thong-tin-chung/:type/:generalInfoId',
+        component: fromComponents.GeneralDetailComponent
+      },
+      {
         path: 'tin-tuc/:id',
         component: fromComponents.NewsDetailComponent
       },

@@ -1,4 +1,4 @@
-<section class="my-5 z-depth-1 ">
+<section class="my-5 z-depth-1" *ngIf="books">
 
   <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
     <p class="mr-4 mb-0">Sách viết về dòng họ</p>
@@ -10,11 +10,11 @@
       alt="Generic placeholder image">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
-        <a href="">{{books[0].title}}</a>
+        <a routerLink="/chinguyentai/thong-tin-chung/common/{{books[0].id}}">{{books[0].title}}</a>
       </h6>
       <div>
         <ul>
-          <li *ngFor="let i of books">
+          <li routerLink="/chinguyentai/thong-tin-chung/books/{{i.id}}" *ngFor="let i of books">
             {{i.title}}
           </li>
         </ul>

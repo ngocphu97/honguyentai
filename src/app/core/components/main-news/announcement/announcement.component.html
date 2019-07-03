@@ -1,4 +1,4 @@
-<section class="z-depth-1 ">
+<section class="z-depth-1" *ngIf="announcement">
   <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
     <p class="mr-4 mb-0">Thông báo</p>
   </div>
@@ -9,11 +9,11 @@
       alt="Generic placeholder image">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
-        <a href="">{{announcement[0].title}}</a>
+        <a routerLink="/chinguyentai/thong-tin-chung/common/{{announcement[0].id}}">{{announcement[0].title}}</a>
       </h6>
       <div>
         <ul>
-          <li *ngFor="let i of announcement">
+          <li routerLink="/chinguyentai/thong-tin-chung/common/{{i.id}}" *ngFor="let i of announcement">
             {{i.title}}
           </li>
         </ul>

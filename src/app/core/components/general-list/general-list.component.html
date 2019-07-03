@@ -1,0 +1,15 @@
+<h3>Thông tin chung</h3>
+
+<app-announcement *ngIf="(common$ | async)" [announcement]="(common$ | async)"></app-announcement>
+
+<app-history *ngIf="(history$ | async)" [history]="(history$ | async)"></app-history>
+
+<app-activities *ngIf="(activities$ | async)" [activities]="(activities$ | async)"></app-activities>
+
+<app-culture-life *ngIf="(lifestyle$ | async)" [culturelife]="(lifestyle$ | async)"></app-culture-life>
+
+<app-books *ngIf="(books$ | async)" [books]="(books$ | async)"></app-books>
+
+<app-worshiping-merit *ngIf="(money$ | async)" [money]="(money$ | async)"></app-worshiping-merit>
+
+<app-connect-people *ngIf="(connect$ | async)" [connect]="(connect$ | async)"></app-connect-people>

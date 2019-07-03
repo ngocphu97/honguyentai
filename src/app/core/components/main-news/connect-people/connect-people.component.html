@@ -1,4 +1,4 @@
-<section class="my-5 z-depth-1 ">
+<section class="my-5 z-depth-1" *ngIf="connect">
 
   <div class="card-header border-0 font-weight-bold d-flex justify-content-between">
     <p class="mr-4 mb-0">Kết nối dòng họ</p>
@@ -10,13 +10,13 @@
       alt="Generic placeholder image">
     <div class="media-body">
       <h6 class="font-weight-bold mt-0">
-        <a href="">
+        <a routerLink="/chinguyentai/thong-tin-chung/connect/{{connect[0].id}}">
           {{connect[0].title}}
         </a>
       </h6>
       <div>
         <ul>
-          <li *ngFor="let i of connect">
+          <li routerLink="/chinguyentai/thong-tin-chung/connect/{{i.id}}" *ngFor="let i of connect">
             {{i.title}}
           </li>
         </ul>
